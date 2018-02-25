@@ -30,7 +30,7 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-asciidoc
-  
+
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
