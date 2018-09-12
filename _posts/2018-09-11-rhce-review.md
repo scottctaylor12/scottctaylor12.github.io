@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "RHCE Review"
-categories: rhce certification
+tags: sysadmin
 ---
 # RHCE Review
 
