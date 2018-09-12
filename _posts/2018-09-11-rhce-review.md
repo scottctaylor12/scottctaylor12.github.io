@@ -45,3 +45,5 @@ The exam is graded after the systems are rebooted, so configurations must be per
 
 ## Final Thoughts
 Red Hat has an incredible exam environment that truly makes test takers know their stuff. This is no multiple choice exam that people can simply slide by. I would highly recommend others who are interested in Linux to study and attempt the exams. I use nearly all of my knowledge gained from the exams in my job and it has made me a better system administrator.
+
+![rhce-cert](/images/rhce-cert.jpg){:class="img-responsive"}
