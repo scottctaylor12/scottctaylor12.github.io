@@ -3,7 +3,6 @@ layout: post
 title:  "RHCE Review"
 tags: sysadmin
 ---
-# RHCE Review
 
 _"An RHCE certification is earned by a Red Hat Certified System Administrator (RHCSA) who has demonstrated the knowledge, skill, and ability required of a senior system administrator responsible for Red Hat Enterprise Linux systems."_
 
