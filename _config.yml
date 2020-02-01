@@ -30,6 +30,7 @@ theme: minima
 plugins:
   - jekyll-feed
   - google_analytics
+  - jekyll-sitemap
 #  - jekyll-analytics
 
 # Google Analytics Setup
