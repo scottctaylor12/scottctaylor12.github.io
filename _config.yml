@@ -19,7 +19,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Personal website to take notes and publish resources as I learn more in my free time.
   RHCE | CCENT | Security+ | Splunk
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://scottctaylor12.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: scottctaylor12
 github_username:  scottctaylor12
 linkedin_username: scottctaylor12
@@ -31,12 +31,8 @@ plugins:
   - jekyll-feed
   - google_analytics
   - jekyll-sitemap
-#  - jekyll-analytics
 
 # Google Analytics Setup
-#jekyll_analytics:
-#  GoogleAnalytics:
-#    id: UA-91255841-1
 google_analytics: UA-91255841-1
 
 # Exclude from processing.
