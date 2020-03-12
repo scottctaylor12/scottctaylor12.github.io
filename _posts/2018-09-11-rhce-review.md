@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "RHCE Review"
+description: Red Hat Certified Engineer (RHCE) certification preparation, resources and exam tips used to successfully pass the exam.  
 tags: sysadmin
 ---
 
