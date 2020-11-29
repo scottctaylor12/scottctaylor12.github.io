@@ -1,0 +1,8 @@
+img[alt="image of scott"] {
+    height: 25%;
+    width: 25%;
+    padding-right: 30px;
+    float: left;
+    border: none;
+    background: none;
+}
