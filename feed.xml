@@ -1,0 +1,1042 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://scottctaylor12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://scottctaylor12.github.io/" rel="alternate" type="text/html" /><updated>2021-04-16T01:18:41+00:00</updated><id>https://scottctaylor12.github.io/feed.xml</id><title type="html">Scott Taylor</title><subtitle>OSCP | RHCE | Splunk</subtitle><entry><title type="html">The DevOps Handbook Review</title><link href="https://scottctaylor12.github.io/devops-handbook-review.html" rel="alternate" type="text/html" title="The DevOps Handbook Review" /><published>2018-12-19T00:00:00+00:00</published><updated>2018-12-19T00:00:00+00:00</updated><id>https://scottctaylor12.github.io/devops-handbook-review</id><content type="html" xml:base="https://scottctaylor12.github.io/devops-handbook-review.html">&lt;p&gt;I just finished reading the DevOps Handbook by Gene Kim, Jez Humble, Patrick Debois, and John Willis, and thought it was an excellent read with content-rich information that is directly applicable to shops attempting to deliver technology faster (which is nearly everyone).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/the-devops-handbook.jpg&quot; alt=&quot;the-devops-handbook&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;overall-thoughts&quot;&gt;Overall Thoughts&lt;/h2&gt;
+&lt;p&gt;This book discussed excellent concepts and techniques for improving technical delivery times and backed them up with case studies of real companies making the transition to a DevOps approach. The case studies were some of the best parts in my opinion because they showed the struggles and challenges that organizations can face and how embracing the DevOps techniques overcame the problems. It is obvious that the authoring team spent years doing the research to put this book together considering how many references are made to conferences, company scenarios, and interviews with various technical managers. With so much background research and studying done, the book is organized very well with ideas that are true to the industry.&lt;/p&gt;
+
+&lt;h2 id=&quot;breakdown&quot;&gt;Breakdown&lt;/h2&gt;
+&lt;p&gt;The DevOps Handbook are split into 6 main parts; 1) The Three Ways, 2) Where to Start, 3) The First Way, 4) The Second Way, 5) The Third Way, and 6) The Technical Practice of Integrating Information Security, Change Management, and Control. If you’ve read the Phoenix Project, the concept of the Three Ways will be somewhat familiar. I think it is ideal to read the Phoenix Project first and then read this book afterwards. This book dives into the technical concepts that are discussed in the Phoenix Project.&lt;/p&gt;
+
+&lt;p&gt;One idea that stuck with me was the fact that DevOps is more than just automation. There is far more of a cultural shift that must occur for an organization to thrive with a DevOps methodology. For example, one of the best sections in my opinion discussed how to effectively transfer lessons learned across an entire organization to better everyone. This is no easy task, but the book suggests interesting ideas on how to effectively complete this. Also there is a good amount of discussion on bettering communication across teams within an organization which is crucial for succeeding in DevOps. Considering I am more of a technical person, reading about these ideas was definitely interesting and inspired me to discuss some changes with my manager. However, this book definitely gets into the technical concepts such as automation, telemetry in staging environments, and 0 downtime upgrades which are essential in DevOps.&lt;/p&gt;
+
+&lt;h2 id=&quot;who-should-read-this&quot;&gt;Who Should Read This?&lt;/h2&gt;
+&lt;p&gt;System administrators, developers, auditors, security engineers, IT managers, and anyone else involved in technical work should read this book. There are essential concept that are applicable across the entire IT and Security departments. Even if this book does not directly apply to a security engineer, it is important to understand the best practices from all members within the department to promote better habits and communicate more effectively. The book discusses teamwork heavily and how all teams should be in sync with processes. Specifically, security should not be an after thought, rather, it should be integrated into the automated process during development.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;This is a great read and I encourage everyone to take some time and look through it. The concepts are solid and supported with real case studies that the authors spent years compiling. To learn the best practices when it comes to embracing the DevOps culture, read The DevOps Handbook.&lt;/p&gt;</content><author><name></name></author><category term="sysadmin" /><summary type="html">I just finished reading the DevOps Handbook by Gene Kim, Jez Humble, Patrick Debois, and John Willis, and thought it was an excellent read with content-rich information that is directly applicable to shops attempting to deliver technology faster (which is nearly everyone).</summary></entry><entry><title type="html">Authentication CentOS/RHEL 7 to Windows Active Directory</title><link href="https://scottctaylor12.github.io/linux-to-ad-auth.html" rel="alternate" type="text/html" title="Authentication CentOS/RHEL 7 to Windows Active Directory" /><published>2018-09-23T00:00:00+00:00</published><updated>2018-09-23T00:00:00+00:00</updated><id>https://scottctaylor12.github.io/linux-to-ad-auth</id><content type="html" xml:base="https://scottctaylor12.github.io/linux-to-ad-auth.html">&lt;p&gt;It’s safe to say that most companies are running Windows Active Directory as their centralized authentication server which handles user accounts and group management. It seems like some folks create a strong divide between Linux and Windows, however, this guide shows how to quickly integrate the two together.&lt;/p&gt;
+
+&lt;h4 id=&quot;shoutouts&quot;&gt;Shoutouts:&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.linuxtechi.com/integrate-rhel7-centos7-windows-active-directory/&quot;&gt;LinuxTechi article by Pradeep Kumar&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/windows_integration_guide/introduction&quot;&gt;RedHat Documentation&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;packages&quot;&gt;Packages&lt;/h2&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yum install sssd realmd oddjob oddjob-mkhomedir adcli samba-common samba-common-tools krb5-workstation openldap-clients policycoreutils-python
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;join-linux-machine-to-ad&quot;&gt;Join Linux machine to AD&lt;/h2&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;realm join --user=scott ad.example.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;edit-etcsssdsssdconf&quot;&gt;Edit /etc/sssd/sssd.conf&lt;/h2&gt;
+&lt;p&gt;Change the “use_fully_qualifies_names” and “fallback_homedir” to look like:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;use_fully_qualified_names = False
+fallback_homedir = /home/%u
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;restart-sssd-service&quot;&gt;Restart sssd service&lt;/h2&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;systemctl restart sssd
+systemctl daemon-reload
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;start-using&quot;&gt;Start using!&lt;/h2&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;id scott
+uid=591001105(scott) gid=591000513(domain users) groups=591000513(domain users),591001108(server admins)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh scott@linux.example.com
+[scott@linux ~]$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="sysadmin" /><summary type="html">It’s safe to say that most companies are running Windows Active Directory as their centralized authentication server which handles user accounts and group management. It seems like some folks create a strong divide between Linux and Windows, however, this guide shows how to quickly integrate the two together.</summary></entry><entry><title type="html">OverTheWire Bandit Levels 31-34</title><link href="https://scottctaylor12.github.io/otw-bandit31-34.html" rel="alternate" type="text/html" title="OverTheWire Bandit Levels 31-34" /><published>2018-09-16T00:00:00+00:00</published><updated>2018-09-16T00:00:00+00:00</updated><id>https://scottctaylor12.github.io/otw-bandit31-34</id><content type="html" xml:base="https://scottctaylor12.github.io/otw-bandit31-34.html">&lt;h2 id=&quot;level-31&quot;&gt;Level 31&lt;/h2&gt;
+&lt;p&gt;There is a git repository at ssh://bandit31-git@localhost/home/bandit31-git/repo. The password for the user bandit31-git is the same as for the user bandit31.&lt;/p&gt;
+
+&lt;p&gt;Clone the repository and find the password for the next level.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit31@bandit:~$ cd /tmp/scottctaylor12
+bandit31@bandit:/tmp/scottctaylor12$ git clone ssh://bandit31-git@localhost/home/bandit31-git/repo
+bandit31-git@localhost's password:
+
+bandit31@bandit:/tmp/scottctaylor12$ cd repo/
+bandit31@bandit:/tmp/scottctaylor12/repo$ ls
+README.md
+bandit31@bandit:/tmp/scottctaylor12/repo$ cat README.md
+This time your task is to push a file to the remote repository.
+
+Details:
+    File name: key.txt
+    Content: 'May I come in?'
+    Branch: master
+
+bandit31@bandit:/tmp/scottctaylor12/repo$ echo &quot;May I come in?&quot; &amp;gt; key.txt
+bandit31@bandit:/tmp/scottctaylor12/repo$ ls
+key.txt  README.md
+bandit31@bandit:/tmp/scottctaylor12/repo$ git add key.txt
+bandit31@bandit:/tmp/scottctaylor12/repo$ git commit -m &quot;bandit31 task&quot;
+bandit31@bandit:/tmp/scottctaylor12/repo$ git push
+bandit31-git@localhost's password:
+Counting objects: 3, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 320 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+remote: ### Attempting to validate files... ####
+remote:
+remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+remote:
+remote: Well done! Here is the password for the next level:
+remote: &amp;lt;PASSWORD&amp;gt;
+remote:
+remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+remote:
+To ssh://localhost/home/bandit31-git/repo
+ ! [remote rejected] master -&amp;gt; master (pre-receive hook declined)
+error: failed to push some refs to 'ssh://bandit31-git@localhost/home/bandit31-git/repo'
+
+bandit31@bandit:/tmp/scottctaylor12/repo$ ssh bandit32@localhost
+bandit32@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-32&quot;&gt;Level 32&lt;/h2&gt;
+&lt;p&gt;After all this git stuff its time for another esape. Good luck!&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;WELCOME TO THE UPPERCASE SHELL
+&amp;gt;&amp;gt; $0
+ls
+uppershell
+bash -i
+bandit33@bandit:~$ whoami
+whoami
+bandit33
+bandit33@bandit:~$ cat /etc/bandit_pass/bandit33
+cat /etc/bandit_pass/bandit33
+&amp;lt;PASSWORD&amp;gt;
+bandit33@bandit:~$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-33&quot;&gt;Level 33&lt;/h2&gt;
+&lt;p&gt;At this moment, level 34 does not exist yet.&lt;/p&gt;</content><author><name></name></author><category term="overthewire-bandit" /><summary type="html">Level 31 There is a git repository at ssh://bandit31-git@localhost/home/bandit31-git/repo. The password for the user bandit31-git is the same as for the user bandit31.</summary></entry><entry><title type="html">OverTheWire Bandit Levels 26-30</title><link href="https://scottctaylor12.github.io/otw-bandit26-30.html" rel="alternate" type="text/html" title="OverTheWire Bandit Levels 26-30" /><published>2018-09-16T00:00:00+00:00</published><updated>2018-09-16T00:00:00+00:00</updated><id>https://scottctaylor12.github.io/otw-bandit26-30</id><content type="html" xml:base="https://scottctaylor12.github.io/otw-bandit26-30.html">&lt;h2 id=&quot;level-26&quot;&gt;Level 26&lt;/h2&gt;
+&lt;p&gt;Good job getting a shell! Now hurry and grab the password for bandit27!&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit26@bandit:~$ ls
+bandit27-do  text.txt
+bandit26@bandit:~$ ./bandit27-do
+Run a command as another user.
+  Example: ./bandit27-do id
+bandit26@bandit:~$ ./bandit27-do cat /etc/bandit_pass/bandit27
+&amp;lt;PASSWORD&amp;gt;
+bandit26@bandit:~$ ssh bandit27@localhost
+bandit27@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-27&quot;&gt;Level 27&lt;/h2&gt;
+&lt;p&gt;There is a git repository at ssh://bandit27-git@localhost/home/bandit27-git/repo. The password for the user bandit27-git is the same as for the user bandit27.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit27@bandit:~$ mkdir /tmp/scottctaylor12
+bandit27@bandit:~$ chmod 777 /tmp/scottctaylor12
+bandit27@bandit:~$ cd /tmp/scottctaylor12
+bandit27@bandit:/tmp/scottctaylor12$ git clone ssh://bandit27-git@localhost/home/bandit27-git/repo
+bandit27-git@localhost's password:
+bandit27@bandit:/tmp/scottctaylor12$ ls
+repo
+bandit27@bandit:/tmp/scottctaylor12$ cd repo/
+bandit27@bandit:/tmp/scottctaylor12/repo$ ls
+README
+bandit27@bandit:/tmp/scottctaylor12/repo$ cat README
+The password to the next level is: &amp;lt;PASSWORD&amp;gt;
+bandit27@bandit:~$ ssh bandit28@localhost
+bandit28@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-28&quot;&gt;Level 28&lt;/h2&gt;
+&lt;p&gt;There is a git repository at ssh://bandit28-git@localhost/home/bandit28-git/repo. The password for the user bandit28-git is the same as for the user bandit28.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit28@bandit:~$ cd /tmp/scottctaylor12
+bandit28@bandit:/tmp/scottctaylor12$ git clone ssh://bandit28-git@localhost/home/bandit28-git/repo
+bandit28-git@localhost's password:
+bandit28@bandit:/tmp/scottctaylor12$ ls
+repo
+bandit28@bandit:/tmp/scottctaylor12$ cd repo/
+bandit28@bandit:/tmp/scottctaylor12/repo$ ls
+README.md
+bandit28@bandit:/tmp/scottctaylor12/repo$ cat README.md
+# Bandit Notes
+Some notes for level29 of bandit.
+
+## credentials
+
+- username: bandit29
+- password: xxxxxxxxxx
+
+bandit28@bandit:/tmp/scottctaylor12/repo$ git log
+commit 04f400829a9629fa7b62528ab7331293902fdfc8
+Author: Morla Porla &amp;lt;morla@overthewire.org&amp;gt;
+Date:   Sun Sep 16 22:43:29 2018 +0200
+
+    fix info leak
+
+commit aa59d7752b70ccf6d230fba806dd81458abc26d7
+Author: Morla Porla &amp;lt;morla@overthewire.org&amp;gt;
+Date:   Sun Sep 16 22:43:29 2018 +0200
+
+    add missing data
+
+commit bfce6960fd376159b2fba9ebf5ea844bfce8d1b7
+Author: Ben Dover &amp;lt;noone@overthewire.org&amp;gt;
+Date:   Sun Sep 16 22:43:29 2018 +0200
+
+    initial commit of README.md
+bandit28@bandit:/tmp/scottctaylor12/repo$ git checkout aa59d7752b70ccf6d230fba806dd81458abc26d7
+Note: checking out 'aa59d7752b70ccf6d230fba806dd81458abc26d7'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b &amp;lt;new-branch-name&amp;gt;
+
+HEAD is now at aa59d77... add missing data
+bandit28@bandit:/tmp/scottctaylor12/repo$ ls
+README.md
+bandit28@bandit:/tmp/scottctaylor12/repo$ cat README.md
+# Bandit Notes
+Some notes for level29 of bandit.
+
+## credentials
+
+- username: bandit29
+- password: &amp;lt;PASSWORD&amp;gt;
+
+bandit28@bandit:/tmp/scottctaylor12/repo$ ssh bandit29@localhost
+bandit29@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;level-29&quot;&gt;Level 29&lt;/h2&gt;
+&lt;p&gt;There is a git repository at ssh://bandit29-git@localhost/home/bandit29-git/repo. The password for the user bandit29-git is the same as for the user bandit29.
+Clone the repository and find the password for the next level.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit29@bandit:~$ cd /tmp/scottctaylor12
+bandit29@bandit:/tmp/scottctaylor12$ git clone ssh://bandit29-git@localhost/home/bandit29-git/repo
+Cloning into 'repo'...
+Could not create directory '/home/bandit29/.ssh'.
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+Are you sure you want to continue connecting (yes/no)? yes
+Failed to add the host to the list of known hosts (/home/bandit29/.ssh/known_hosts).
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit29-git@localhost's password:
+remote: Counting objects: 16, done.
+remote: Compressing objects: 100% (11/11), done.
+remote: Total 16 (delta 2), reused 0 (delta 0)
+Receiving objects: 100% (16/16), done.
+Resolving deltas: 100% (2/2), done.
+bandit29@bandit:/tmp/scottctaylor12$ ls
+repo
+bandit29@bandit:/tmp/scottctaylor12$ cd repo/
+bandit29@bandit:/tmp/scottctaylor12/repo$ ls
+README.md
+bandit29@bandit:/tmp/scottctaylor12/repo$ cat README.md
+# Bandit Notes
+Some notes for bandit30 of bandit.
+
+## credentials
+
+- username: bandit30
+- password: &amp;lt;no passwords in production!&amp;gt;
+
+bandit29@bandit:/tmp/scottctaylor12/repo$ git checkout dev
+Branch dev set up to track remote branch dev from origin.
+Switched to a new branch 'dev'
+bandit29@bandit:/tmp/scottctaylor12/repo$ ls
+code  README.md
+bandit29@bandit:/tmp/scottctaylor12/repo$ cat README.md
+# Bandit Notes
+Some notes for bandit30 of bandit.
+
+## credentials
+
+- username: bandit30
+- password: &amp;lt;PASSWORD&amp;gt;
+
+bandit29@bandit:/tmp/scottctaylor12/repo$ ssh bandit30@localhost
+bandit30@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-30&quot;&gt;Level 30&lt;/h2&gt;
+&lt;p&gt;There is a git repository at ssh://bandit30-git@localhost/home/bandit30-git/repo. The password for the user bandit30-git is the same as for the user bandit30.
+Clone the repository and find the password for the next level.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit30@bandit:~$ cd /tmp/scottctaylor12
+bandit30@bandit:/tmp/scottctaylor12$ git clone ssh://bandit30-git@localhost/home/bandit30-git/repo
+bandit30-git@localhost's password:
+
+bandit30@bandit:/tmp/scottctaylor12$ cd repo/
+bandit30@bandit:/tmp/scottctaylor12/repo$ ls
+README.md
+bandit30@bandit:/tmp/scottctaylor12/repo$ cat README.md
+just an epmty file... muahaha
+bandit30@bandit:/tmp/scottctaylor12/repo$ cd .git
+bandit30@bandit:/tmp/scottctaylor12/repo/.git$ ls
+branches  config  description  FETCH_HEAD  HEAD  hooks  index  info  logs  objects  ORIG_HEAD  packed-refs  refs
+bandit30@bandit:/tmp/scottctaylor12/repo/.git$ cat packed-refs
+# pack-refs with: peeled fully-peeled
+942f2e54a6297c2f7229523fabbccbb189373571 refs/remotes/origin/master
+f17132340e8ee6c159e0a4a6bc6f80e1da3b1aea refs/tags/secret
+bandit30@bandit:/tmp/scottctaylor12/repo/.git$ git show f17132340e8ee6c159e0a4a6bc6f80e1da3b1aea
+&amp;lt;PASSWORD&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Continue to OverTheWire Bandit &lt;a href=&quot;https://scottctaylor12.github.io/otw-bandit31-34.html&quot;&gt;Levels 31-34&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="overthewire-bandit" /><summary type="html">Level 26 Good job getting a shell! Now hurry and grab the password for bandit27! bandit26@bandit:~$ ls bandit27-do text.txt bandit26@bandit:~$ ./bandit27-do Run a command as another user. Example: ./bandit27-do id bandit26@bandit:~$ ./bandit27-do cat /etc/bandit_pass/bandit27 &amp;lt;PASSWORD&amp;gt; bandit26@bandit:~$ ssh bandit27@localhost bandit27@localhost's password:</summary></entry><entry><title type="html">OverTheWire Bandit Levels 21-25</title><link href="https://scottctaylor12.github.io/otw-bandit21-25.html" rel="alternate" type="text/html" title="OverTheWire Bandit Levels 21-25" /><published>2018-09-15T00:00:00+00:00</published><updated>2018-09-15T00:00:00+00:00</updated><id>https://scottctaylor12.github.io/otw-bandit21-25</id><content type="html" xml:base="https://scottctaylor12.github.io/otw-bandit21-25.html">&lt;h2 id=&quot;level-21&quot;&gt;Level 21&lt;/h2&gt;
+&lt;p&gt;A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit21@bandit:~$ cat /etc/cron.d/cronjob_bandit22
+@reboot bandit22 /usr/bin/cronjob_bandit22.sh &amp;amp;&amp;gt; /dev/null
+* * * * * bandit22 /usr/bin/cronjob_bandit22.sh &amp;amp;&amp;gt; /dev/null
+bandit21@bandit:~$ cat /usr/bin/cronjob_bandit22.sh
+#!/bin/bash
+chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+cat /etc/bandit_pass/bandit22 &amp;gt; /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+bandit21@bandit:~$ cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+bandit21@bandit:~$ ssh bandit22@localhost
+bandit22@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-22&quot;&gt;Level 22&lt;/h2&gt;
+&lt;p&gt;A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NOTE: Looking at shell scripts written by other people is a very useful skill. The script for this level is intentionally made easy to read. If you are having problems understanding what it does, try executing it to see the debug information it prints.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit22@bandit:~$ cat /etc/cron.d/cronjob_bandit23
+@reboot bandit23 /usr/bin/cronjob_bandit23.sh  &amp;amp;&amp;gt; /dev/null
+* * * * * bandit23 /usr/bin/cronjob_bandit23.sh  &amp;amp;&amp;gt; /dev/null
+bandit22@bandit:~$ cat /usr/bin/cronjob_bandit23.sh
+#!/bin/bash
+
+myname=$(whoami)
+mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+
+echo &quot;Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget&quot;
+
+cat /etc/bandit_pass/$myname &amp;gt; /tmp/$mytarget
+bandit22@bandit:~$ cat /tmp/$(echo I am user bandit23 | md5sum | cut -d ' ' -f 1)
+&amp;lt;PASSWORD&amp;gt;
+bandit22@bandit:~$ ssh bandit23@localhost
+bandit23@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-23&quot;&gt;Level 23&lt;/h2&gt;
+&lt;p&gt;A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NOTE: This level requires you to create your own first shell-script. This is a very big step and you should be proud of yourself when you beat this level!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NOTE 2: Keep in mind that your shell script is removed once executed, so you may want to keep a copy around…&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit23@bandit:~$ cat /etc/cron.d/cronjob_bandit24
+@reboot bandit24 /usr/bin/cronjob_bandit24.sh &amp;amp;&amp;gt; /dev/null
+* * * * * bandit24 /usr/bin/cronjob_bandit24.sh &amp;amp;&amp;gt; /dev/null
+bandit23@bandit:~$ cat /usr/bin/cronjob_bandit24.sh
+#!/bin/bash
+
+myname=$(whoami)
+
+cd /var/spool/$myname
+echo &quot;Executing and deleting all scripts in /var/spool/$myname:&quot;
+for i in * .*;
+do
+    if [ &quot;$i&quot; != &quot;.&quot; -a &quot;$i&quot; != &quot;..&quot; ];
+    then
+        echo &quot;Handling $i&quot;
+        timeout -s 9 60 ./$i
+        rm -f ./$i
+    fi
+done
+bandit23@bandit:~$ cd /tmp/scottctaylor12
+bandit23@bandit:/tmp/scottctaylor12$ touch bandit24-pass.sh
+bandit23@bandit:/tmp/scottctaylor12$ chmod 777 bandit24-pass.sh
+(WRITE SCRIPT)
+
+bandit23@bandit:/tmp/scottctaylor12$ cat bandit24-pass.sh
+#!/bin/bash
+cat /etc/bandit_pass/bandit24 &amp;gt; /tmp/scottctaylor12/PASSWORD
+chmod 666 /tmp/scottctaylor12/PASSWORD
+bandit23@bandit:/tmp/scottctaylor12$ cp bandit24-pass.sh /var/spool/bandit24/
+bandit23@bandit:/tmp/scottctaylor12$ cat PASSWORD
+&amp;lt;PASSWORD&amp;gt;
+bandit23@bandit:/tmp/scottctaylor12$ ssh bandit24@localhost
+bandit24@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;level-24&quot;&gt;Level 24&lt;/h2&gt;
+&lt;p&gt;A daemon is listening on port 30002 and will give you the password for bandit25 if given the password for bandit24 and a secret numeric 4-digit pincode. There is no way to retrieve the pincode except by going through all of the 10000 combinations, called brute-forcing.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit24@bandit:~$ cd /tmp/scottctaylor12
+bandit24@bandit:/tmp/scottctaylor12$ touch brute-force-25.sh
+bandit24@bandit:/tmp/scottctaylor12$ chmod 777 brute-force-25.sh
+(EDIT brute-force-25.sh)
+bandit24@bandit:/tmp/scottctaylor12$ cat brute-force-25.sh
+#!/bin/bash
+PASS=$(cat /etc/bandit_pass/bandit24)
+
+for i in {0000..9999}
+do
+    echo $i
+    echo $PASS $i | nc localhost 30002
+done
+
+bandit24@bandit:/tmp/scottctaylor12$ ./brute-force-25.sh &amp;gt;&amp;gt; output
+(AN HOUR LATER.....)
+bandit24@bandit:/tmp/scottctaylor12$ cat output | grep -i -A2 -B2 ^correct
+5440
+I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.
+Correct!
+The password of user bandit25 is &amp;lt;PASSWORD&amp;gt;
+bandit24@bandit:/tmp/scottctaylor12$ ssh bandit25@localhost
+bandit24@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-25&quot;&gt;Level 25&lt;/h2&gt;
+&lt;p&gt;Logging in to bandit26 from bandit25 should be fairly easy… The shell for user bandit26 is not /bin/bash, but something else. Find out what it is, how it works and how to break out of it.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit25@bandit:~$ ls
+bandit26.sshkey
+bandit25@bandit:~$ ssh -i bandit26.sshkey bandit26@localhost
+..
+Connection to localhost closed
+bandit25@bandit:~$ cat /etc/passwd | grep bandit26
+bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtext
+bandit25@bandit:~$ cat /usr/bin/showtext
+#!/bin/sh
+
+export TERM=linux
+
+more ~/text.txt
+exit 0
+(SHRINK WINDOW TO SHOW 3 LINES)
+bandit25@bandit:~$ ssh -i bandit26.sshkey bandit26@localhost
+v
+:set shell=/bin/bash
+:shell
+bandit26@bandit:~$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Continue to OverTheWire Bandit &lt;a href=&quot;https://scottctaylor12.github.io/otw-bandit26-30.html&quot;&gt;Levels 26-30&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="overthewire-bandit" /><summary type="html">Level 21 A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed. bandit21@bandit:~$ cat /etc/cron.d/cronjob_bandit22 @reboot bandit22 /usr/bin/cronjob_bandit22.sh &amp;amp;&amp;gt; /dev/null * * * * * bandit22 /usr/bin/cronjob_bandit22.sh &amp;amp;&amp;gt; /dev/null bandit21@bandit:~$ cat /usr/bin/cronjob_bandit22.sh #!/bin/bash chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv cat /etc/bandit_pass/bandit22 &amp;gt; /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv bandit21@bandit:~$ cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv bandit21@bandit:~$ ssh bandit22@localhost bandit22@localhost's password:</summary></entry><entry><title type="html">OverTheWire Bandit Levels 6-10</title><link href="https://scottctaylor12.github.io/otw-bandit6-10.html" rel="alternate" type="text/html" title="OverTheWire Bandit Levels 6-10" /><published>2018-09-15T00:00:00+00:00</published><updated>2018-09-15T00:00:00+00:00</updated><id>https://scottctaylor12.github.io/otw-bandit6-10</id><content type="html" xml:base="https://scottctaylor12.github.io/otw-bandit6-10.html">&lt;h2 id=&quot;level-6&quot;&gt;Level 6&lt;/h2&gt;
+&lt;p&gt;The password for the next level is stored somewhere on the server and has all of the following properties:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;owned by user bandit7&lt;/li&gt;
+  &lt;li&gt;owned by group bandit6&lt;/li&gt;
+  &lt;li&gt;33 bytes in size&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit6@bandit:~$ find / -user bandit7 -group bandit6 -size 33c 2&amp;gt;/dev/null
+/var/lib/dpkg/info/bandit7.password
+bandit6@bandit:~$ cat /var/lib/dpkg/info/bandit7.password
+&amp;lt;PASSWORD&amp;gt;
+bandit6@bandit:~$ ssh bandit7@localhost
+bandit7@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-7&quot;&gt;Level 7&lt;/h2&gt;
+&lt;p&gt;The password for the next level is stored in the file data.txt next to the word millionth&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit7@bandit:~$ ls
+data.txt
+bandit7@bandit:~$ cat data.txt | grep millionth
+millionth       &amp;lt;PASSWORD&amp;gt;
+bandit7@bandit:~$ ssh bandit8@localhost
+bandit8@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-8&quot;&gt;Level 8&lt;/h2&gt;
+&lt;p&gt;The password for the next level is stored in the file data.txt and is the only line of text that occurs only once&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit8@bandit:~$ ls
+data.txt
+bandit8@bandit:~$ cat data.txt | sort | uniq -c | grep &quot;1 &quot;
+      1 &amp;lt;PASSWORD&amp;gt;
+bandit8@bandit:~$ ssh bandit9@localhost
+bandit9@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-9&quot;&gt;Level 9&lt;/h2&gt;
+&lt;p&gt;The password for the next level is stored in the file data.txt in one of the few human-readable strings, beginning with several ‘=’ characters.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit9@bandit:~$ ls
+data.txt
+bandit9@bandit:~$ strings data.txt | grep ^=====
+========== theP`
+========== password
+========== &amp;lt;PASSWORD&amp;gt;
+bandit9@bandit:~$ ssh bandit10@localhost
+bandit10@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-10&quot;&gt;Level 10&lt;/h2&gt;
+&lt;p&gt;The password for the next level is stored in the file data.txt, which contains base64 encoded data&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit10@bandit:~$ ls
+data.txt
+bandit10@bandit:~$ cat data.txt
+VGhlIHBhc3N3b3JkIGlzIElGdWt3S0dzRlc4TU9xM0lSRnFyeEUxaHhUTkViVVBSCg==
+bandit10@bandit:~$ cat data.txt | base64 -d
+The password is &amp;lt;PASSWORD&amp;gt;
+bandit10@bandit:~$ ssh bandit11@localhost
+bandit11@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Continue to OverTheWire Bandit &lt;a href=&quot;https://scottctaylor12.github.io/otw-bandit11-15.html&quot;&gt;Levels 11-15&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="overthewire-bandit" /><summary type="html">Level 6 The password for the next level is stored somewhere on the server and has all of the following properties: owned by user bandit7 owned by group bandit6 33 bytes in size</summary></entry><entry><title type="html">OverTheWire Bandit Levels 16-20</title><link href="https://scottctaylor12.github.io/otw-bandit16-20.html" rel="alternate" type="text/html" title="OverTheWire Bandit Levels 16-20" /><published>2018-09-15T00:00:00+00:00</published><updated>2018-09-15T00:00:00+00:00</updated><id>https://scottctaylor12.github.io/otw-bandit16-20</id><content type="html" xml:base="https://scottctaylor12.github.io/otw-bandit16-20.html">&lt;h2 id=&quot;level-16&quot;&gt;Level 16&lt;/h2&gt;
+&lt;p&gt;The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit16@bandit:~$ nmap -p 31000-32000 localhost
+
+Starting Nmap 7.01 ( https://nmap.org ) at 2018-09-15 22:28 CEST
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00023s latency).
+Other addresses for localhost (not scanned): ::1
+Not shown: 996 closed ports
+PORT      STATE SERVICE
+31046/tcp open  unknown
+31518/tcp open  unknown
+31691/tcp open  unknown
+31790/tcp open  unknown
+31960/tcp open  unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 0.09 seconds
+
+bandit16@bandit:~$ for i in 31046 31518 31691 31790 31960; do echo $i;echo test | nc localhost $i; done
+31046
+test
+31518
+31691
+test
+31790
+31960
+test
+
+bandit16@bandit:~$ cat /etc/bandit_pass/bandit16
+&amp;lt;BANDIT16 PASSWORD&amp;gt;
+bandit16@bandit:~$ openssl s_client -connect localhost:31790
+CONNECTED(00000003)
+depth=0 CN = bandit
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 CN = bandit
+verify return:1
+---
+Certificate chain
+ 0 s:/CN=bandit
+   i:/CN=bandit
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIICsjCCAZqgAwIBAgIJAKZI1xYeoXFuMA0GCSqGSIb3DQEBCwUAMBExDzANBgNV
+BAMMBmJhbmRpdDAeFw0xNzEyMjgxMzIzNDBaFw0yNzEyMjYxMzIzNDBaMBExDzAN
+BgNVBAMMBmJhbmRpdDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAOcX
+ruVcnQUBeHJeNpSYayQExCJmcHzSCktnOnF/H4efWzxvLRWt5z4gYaKvTC9ixLrb
+K7a255GEaUbP/NVFpB/sn56uJc1ijz8u0hWQ3DwVe5ZrHUkNzAuvC2OeQgh2HanV
+5LwB1nmRZn90PG1puKxktMjXsGY7f9Yvx1/yVnZqu2Ev2uDA0RXij/T+hEqgDMI7
+y4ZFmuYD8z4b2kAUwj7RHh9LUKXKQlO+Pn8hchdR/4IK+Xc4+GFOin0XdQdUJaBD
+8quOUma424ejF5aB6QCSE82MmHlLBO2tzC9yKv8L8w+fUeQFECH1WfPC56GcAq3U
+IvgdjGrU/7EKN5XkONcCAwEAAaMNMAswCQYDVR0TBAIwADANBgkqhkiG9w0BAQsF
+AAOCAQEAnrOty7WAOpDGhuu0V8FqPoKNwFrqGuQCTeqhQ9LP0bFNhuH34pZ0JFsH
+L+Y/q4Um7+66mNJUFpMDykm51xLY2Y4oDNCzugy+fm5Q0EWKRwrq+hIM+5hs0RdC
+nARP+719ddmUiXF7r7IVP2gK+xqpa8+YcYnLuoXEtpKkrrQCCUiqabltU5yRMR77
+3wqB54txrB4IhwnXqpO23kTuRNrkG+JqDUkaVpvct+FAdT3PODMONP/oHII3SH9i
+ar/rI9k+4hjlg4NqOoduxX9M+iLJ0Zgj6HAg3EQVn4NHsgmuTgmknbhqTU3o4IwB
+XFnxdxVy0ImGYtvmnZDQCGivDok6jA==
+-----END CERTIFICATE-----
+subject=/CN=bandit
+issuer=/CN=bandit
+---
+No client certificate CA names sent
+---
+SSL handshake has read 1015 bytes and written 631 bytes
+---
+New, TLSv1/SSLv3, Cipher is AES128-SHA
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1
+    Cipher    : AES128-SHA
+    Session-ID: 937C0D0D739A2BF260B3394CFACA49A81BA1A2EA9EF6EC3CCEF5B6D5D871479E
+    Session-ID-ctx:
+    Master-Key: E1FA1DA038959B70B9E601A2FDDAA0605EAAEBB1A2ED6140EECF93DF3D8CC641D609316B5C68F5994A717A1D7309F03E
+    Key-Arg   : None
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - aa 3d 08 f7 55 9a 83 cb-75 cb f1 ae ef 7b e3 4c   .=..U...u....{.L
+    0010 - 3d 85 f3 4e 2a 8f 8f 18-f0 a7 a7 9f 48 d5 59 1c   =..N*.......H.Y.
+    0020 - a7 c9 9c ca 1f 03 0f 03-1a 21 e3 21 f8 5b 1b 88   .........!.!.[..
+    0030 - 90 a1 d2 3c 12 89 a0 66-da 10 45 a0 38 cb 47 62   ...&amp;lt;...f..E.8.Gb
+    0040 - e7 9b fb 5e 41 e1 19 d7-40 97 18 8f bc a9 8f 7a   ...^A...@......z
+    0050 - fb 8c dc db 46 ac 9a 99-df a1 99 d0 68 81 85 2c   ....F.......h..,
+    0060 - d2 9c 8c ca ce 1a 9d 33-5c b1 2f d3 f4 60 d9 74   .......3\./..`.t
+    0070 - 07 58 d3 a9 4a 05 e4 80-5c b8 2f 1e b8 90 c3 cc   .X..J...\./.....
+    0080 - 7b af d6 75 a5 5a b8 db-6b 57 ae 77 68 86 e6 33   {..u.Z..kW.wh..3
+    0090 - e7 e8 8c 20 1d 7b b4 4a-89 21 8c 03 19 24 c9 2e   ... .{.J.!...$..
+
+    Start Time: 1537043981
+    Timeout   : 300 (sec)
+    Verify return code: 18 (self signed certificate)
+---
+cluFn7wTiGryunymYOu4RcffSxQluehd
+Correct!
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ
+imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ
+Ja6Lzb558YW3FZl87ORiO+rW4LCDCNd2lUvLE/GL2GWyuKN0K5iCd5TbtJzEkQTu
+DSt2mcNn4rhAL+JFr56o4T6z8WWAW18BR6yGrMq7Q/kALHYW3OekePQAzL0VUYbW
+JGTi65CxbCnzc/w4+mqQyvmzpWtMAzJTzAzQxNbkR2MBGySxDLrjg0LWN6sK7wNX
+x0YVztz/zbIkPjfkU1jHS+9EbVNj+D1XFOJuaQIDAQABAoIBABagpxpM1aoLWfvD
+KHcj10nqcoBc4oE11aFYQwik7xfW+24pRNuDE6SFthOar69jp5RlLwD1NhPx3iBl
+J9nOM8OJ0VToum43UOS8YxF8WwhXriYGnc1sskbwpXOUDc9uX4+UESzH22P29ovd
+d8WErY0gPxun8pbJLmxkAtWNhpMvfe0050vk9TL5wqbu9AlbssgTcCXkMQnPw9nC
+YNN6DDP2lbcBrvgT9YCNL6C+ZKufD52yOQ9qOkwFTEQpjtF4uNtJom+asvlpmS8A
+vLY9r60wYSvmZhNqBUrj7lyCtXMIu1kkd4w7F77k+DjHoAXyxcUp1DGL51sOmama
++TOWWgECgYEA8JtPxP0GRJ+IQkX262jM3dEIkza8ky5moIwUqYdsx0NxHgRRhORT
+8c8hAuRBb2G82so8vUHk/fur85OEfc9TncnCY2crpoqsghifKLxrLgtT+qDpfZnx
+SatLdt8GfQ85yA7hnWWJ2MxF3NaeSDm75Lsm+tBbAiyc9P2jGRNtMSkCgYEAypHd
+HCctNi/FwjulhttFx/rHYKhLidZDFYeiE/v45bN4yFm8x7R/b0iE7KaszX+Exdvt
+SghaTdcG0Knyw1bpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A
+R57hJglezIiVjv3aGwHwvlZvtszK6zV6oXFAu0ECgYAbjo46T4hyP5tJi93V5HDi
+Ttiek7xRVxUl+iU7rWkGAXFpMLFteQEsRr7PJ/lemmEY5eTDAFMLy9FL2m9oQWCg
+R8VdwSk8r9FGLS+9aKcV5PI/WEKlwgXinB3OhYimtiG2Cg5JCqIZFHxD6MjEGOiu
+L8ktHMPvodBwNsSBULpG0QKBgBAplTfC1HOnWiMGOU3KPwYWt0O6CdTkmJOmL8Ni
+blh9elyZ9FsGxsgtRBXRsqXuz7wtsQAgLHxbdLq/ZJQ7YfzOKU4ZxEnabvXnvWkU
+YOdjHdSOoKvDQNWu6ucyLRAWFuISeXw9a/9p7ftpxm0TSgyvmfLF2MIAEwyzRqaM
+77pBAoGAMmjmIJdjp+Ez8duyn3ieo36yrttF5NSsJLAbxFpdlc1gvtGCWW+9Cq0b
+dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3
+vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
+-----END RSA PRIVATE KEY-----
+
+closed
+
+COPY RSA KEY CONTENT TO /tmp/scottctaylor12/bandit17.key
+
+bandit16@bandit:~$ chmod 600 /tmp/scottctaylor12/bandit17.key
+bandit16@bandit:~$ ssh -i /tmp/scottctaylor12/bandit17.key bandit17@localhost
+
+bandit17@bandit:~$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-17&quot;&gt;Level 17&lt;/h2&gt;
+&lt;p&gt;There are 2 files in the homedirectory: passwords.old and passwords.new. The password for the next level is in passwords.new and is the only line that has been changed between passwords.old and passwords.new&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NOTE: if you have solved this level and see ‘Byebye!’ when trying to log into bandit18, this is related to the next level, bandit19&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit17@bandit:~$ ls
+passwords.new  passwords.old
+bandit17@bandit:~$ diff passwords.old passwords.new
+42c42
+&amp;lt; 6vcSC74ROI95NqkKaeEC2ABVMDX9TyUr
+---
+&amp;gt; &amp;lt;PASSWORD&amp;gt;
+bandit17@bandit:~$ ssh bandit18@localhost
+bandit18@localhost's password:
+.
+.
+Byebye !
+Connection to localhost closed.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;level-18&quot;&gt;Level 18&lt;/h2&gt;
+&lt;p&gt;The password for the next level is stored in a file readme in the homedirectory. Unfortunately, someone has modified .bashrc to log you out when you log in with SSH.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit17@bandit:~$ ssh bandit18@localhost &quot;cat /home/bandit18/readme&quot;
+bandit18@localhost's password:
+&amp;lt;PASSWORD&amp;gt;
+ssh bandit19@localhost
+bandit19@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-19&quot;&gt;Level 19&lt;/h2&gt;
+&lt;p&gt;To gain access to the next level, you should use the setuid binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit19@bandit:~$ ls
+bandit20-do
+bandit19@bandit:~$ ./bandit20-do
+Run a command as another user.
+  Example: ./bandit20-do id
+bandit19@bandit:~$ ./bandit20-do cat /etc/bandit_pass/bandit20
+&amp;lt;PASSWORD&amp;gt;
+bandit19@bandit:~$ ssh bandit20@localhost
+bandit20:localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-20&quot;&gt;Level 20&lt;/h2&gt;
+&lt;p&gt;There is a setuid binary in the homedirectory that does the following: it makes a connection to localhost on the port you specify as a commandline argument. It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). If the password is correct, it will transmit the password for the next level (bandit21).&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;SESSION 1&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit20@bandit:~$ cat /etc/bandit_pass/bandit20 | nc -nvlp 9999
+Listening on [0.0.0.0] (family 0, port 9999)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;SESSION 2&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit20@bandit:~$ ls
+suconnect
+bandit20@bandit:~$ ./suconnect 9999
+Read: &amp;lt;PASSWORD&amp;gt;
+Password matches, sending next password
+bandit20@bandit:~$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;SESSION 1&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Connection from [127.0.0.1] port 9999 [tcp/*] accepted (family 2, sport 44516)
+&amp;lt;PASSWORD&amp;gt;
+bandit20@bandit:~$ ssh bandit21@localhost
+bandit21@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Continue to OverTheWire Bandit &lt;a href=&quot;https://scottctaylor12.github.io/otw-bandit21-25.html&quot;&gt;Levels 21-25&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="overthewire-bandit" /><summary type="html">Level 16 The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it. ``` bandit16@bandit:~$ nmap -p 31000-32000 localhost</summary></entry><entry><title type="html">OverTheWire Bandit Levels 11-15</title><link href="https://scottctaylor12.github.io/otw-bandit11-15.html" rel="alternate" type="text/html" title="OverTheWire Bandit Levels 11-15" /><published>2018-09-15T00:00:00+00:00</published><updated>2018-09-15T00:00:00+00:00</updated><id>https://scottctaylor12.github.io/otw-bandit11-15</id><content type="html" xml:base="https://scottctaylor12.github.io/otw-bandit11-15.html">&lt;h2 id=&quot;level-11&quot;&gt;Level 11&lt;/h2&gt;
+&lt;p&gt;The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit11@bandit:~$ ls
+data.txt
+bandit11@bandit:~$ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+The password is &amp;lt;PASSWORD&amp;gt;
+bandit11@bandit:~$ ssh bandit12@localhost
+bandit12@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-12&quot;&gt;Level 12&lt;/h2&gt;
+&lt;p&gt;The password for the next level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work using mkdir. For example: mkdir /tmp/myname123. Then copy the datafile using cp, and rename it using mv (read the manpages!)&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit12@bandit:~$ ls
+data.txt
+bandit12@bandit:~$ mkdir /tmp/scottctaylor12
+bandit12@bandit:~$ cp data.txt /tmp/scottctaylor12
+bandit12@bandit:~$ cd /tmp/scottctaylor12
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.txt
+bandit12@bandit:/tmp/scottctaylor12$ file data.txt
+data.txt: ASCII text
+bandit12@bandit:/tmp/scottctaylor12$ cat data.txt
+00000000: 1f8b 0808 ecf2 445a 0203 6461 7461 322e  ......DZ..data2.
+00000010: 6269 6e00 0149 02b6 fd42 5a68 3931 4159  bin..I...BZh91AY
+00000020: 2653 5930 3e1b 4000 0014 ffff dde3 2b6d  &amp;amp;SY0&amp;gt;.@.......+m
+00000030: afff dd1e dfd7 ffbf bdfb 3f67 bfff ffff  ..........?g....
+00000040: bde5 bfff aff7 bfdb e5ff ffef b001 39b0  ..............9.
+00000050: 480d 3400 0068 0068 1a00 0000 01a3 4000  H.4..h.h......@.
+00000060: 0001 a643 4d34 0000 d00d 0698 800d 1934  ...CM4.........4
+00000070: d0c4 d034 1a36 a343 646a 1c9a 3206 9a00  ...4.6.Cdj..2...
+00000080: 3406 8000 068d 064f 51a3 4000 000f 5000  4......OQ.@...P.
+00000090: 6868 0034 d308 0da4 6990 1a03 4000 6869  hh.4....i...@.hi
+000000a0: a0d0 00d3 2341 94d0 0006 8006 8034 1a34  ....#A.......4.4
+000000b0: 00d0 d000 0310 d068 3400 001e 900d 1a19  .......h4.......
+000000c0: 0062 68d3 4680 640f 48d0 d320 0068 621a  .bh.F.d.H.. .hb.
+000000d0: 0543 0116 180c 6232 a7d7 82c8 7bd4 2374  .C....b2....{.#t
+000000e0: 1de5 e375 b7b9 0b78 2d37 bd61 5cdf 40da  ...u...x-7.a\.@.
+000000f0: b8e5 3258 213d e4bb ecb2 8d51 84f9 3bd0  ..2X!=.....Q..;.
+00000100: b1c9 ef2a bcff 45cc 1f1c 0028 1cfe 8784  ...*..E....(....
+00000110: 78a9 7611 0a81 c4d5 cb26 4b80 7888 c9bc  x.v......&amp;amp;K.x...
+00000120: 2b3e a351 59ae c1fd 36c8 286e d6c3 bb2b  +&amp;gt;.QY...6.(n...+
+00000130: b280 d19b 70b3 190a 0204 4603 9f79 e2b8  ....p.....F..y..
+00000140: cf1b 8330 fcad 3780 86c2 5c3d 5bc9 4631  ...0..7...\=[.F1
+00000150: 3718 5e2e a88c 34e6 8461 35ad c14f 6fd4  7.^...4..a5..Oo.
+00000160: 31dd a5cc 5223 545e e01d ff23 cde3 22cc  1...R#T^...#..&quot;.
+00000170: 22fa a62b e27a dfa5 d4f0 c326 28ef a4b3  &quot;..+.z.....&amp;amp;(...
+00000180: adc5 149c 1c27 dbc4 97b9 6342 487e bfe3  .....'....cBH~..
+00000190: 02ee d63e 3379 8ebc d559 c670 7987 da1d  ...&amp;gt;3y...Y.py...
+000001a0: 4c4b 5ec4 9965 075b 9d0b 08ee df17 d07c  LK^..e.[.......|
+000001b0: ea9a 5fbf 43e7 d405 5239 1437 0c8a 34cd  .._.C...R9.7..4.
+000001c0: be6f a949 b061 68e8 6ba5 c9ba 4112 0819  .o.I.ah.k...A...
+000001d0: 7cb9 a3c8 bff1 0895 1819 8f80 407e dc32  |...........@~.2
+000001e0: 9269 ca68 3f58 bb30 cd9b fcd6 0006 1224  .i.h?X.0.......$
+000001f0: 177b fe66 c676 01f0 a5bc 9131 6746 cc85  .{.f.v.....1gF..
+00000200: 1a39 e46f 6b9a 7bd4 694b e999 c300 b57e  .9.ok.{.iK.....~
+00000210: 9b0a 1229 fac1 cc0c 24fb a905 a06a b8cf  ...)....$....j..
+00000220: cb56 2a73 6016 6950 8208 5785 af54 0d42  .V*s`.iP..W..T.B
+00000230: 754e 5a48 8835 2b47 aa9b c45e 4ca8 a7a0  uNZH.5+G...^L...
+00000240: 61dd e070 7717 9346 5f14 d808 8263 7746  a..pw..F_....cwF
+00000250: 5100 3af8 fa20 ff8b b922 9c28 4818 1f0d  Q.:.. ...&quot;.(H...
+00000260: a000 e793 1e61 4902 0000                 .....aI...
+
+bandit12@bandit:/tmp/scottctaylor12$ cat data.txt | xxd -r &amp;gt; data2
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.txt  data2
+
+bandit12@bandit:/tmp/scottctaylor12$ file data2
+data2: gzip compressed data, was &quot;data2.bin&quot;, last modified: Thu Dec 28 13:34:36 2017, max compression, from Unix
+bandit12@bandit:/tmp/scottctaylor12$ mv data2 data2.gz
+bandit12@bandit:/tmp/scottctaylor12$ gunzip data2.gz
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.txt  data2
+
+bandit12@bandit:/tmp/scottctaylor12$ file data2
+data2: bzip2 compressed data, block size = 900k
+bandit12@bandit:/tmp/scottctaylor12$ mv data2 data2.bz
+bandit12@bandit:/tmp/scottctaylor12$ bunzip2 data2.bz
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.txt  data2
+
+bandit12@bandit:/tmp/scottctaylor12$ file data2
+data2: gzip compressed data, was &quot;data4.bin&quot;, last modified: Thu Dec 28 13:34:36 2017, max compression, from Unix
+bandit12@bandit:/tmp/scottctaylor12$ mv data2 data2.gz
+bandit12@bandit:/tmp/scottctaylor12$ gunzip data2.gz
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.txt  data2
+
+bandit12@bandit:/tmp/scottctaylor12$ file data2
+data2: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/scottctaylor12$ mv data2 data.tar
+bandit12@bandit:/tmp/scottctaylor12$ tar -xvf data.tar
+data5.bin
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.tar  data.txt  data5.bin
+
+bandit12@bandit:/tmp/scottctaylor12$ file data5.bin
+data5.bin: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/scottctaylor12$ mv data5.bin data5.tar
+bandit12@bandit:/tmp/scottctaylor12$ tar -xvf data5.tar
+data6.bin
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.tar  data.txt  data5.tar  data6.bin
+
+bandit12@bandit:/tmp/scottctaylor12$ file data6.bin
+data6.bin: bzip2 compressed data, block size = 900k
+bandit12@bandit:/tmp/scottctaylor12$ mv data6.bin data6.bz
+bandit12@bandit:/tmp/scottctaylor12$ bunzip2 data6.bz
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.tar  data.txt  data5.tar  data6
+
+bandit12@bandit:/tmp/scottctaylor12$ file data6
+data6: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/scottctaylor12$ mv data6 data6.tar
+bandit12@bandit:/tmp/scottctaylor12$ tar -xvf data6.tar
+data8.bin
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.tar  data.txt  data5.tar  data6.tar  data8.bin
+
+bandit12@bandit:/tmp/scottctaylor12$ file data8.bin
+data8.bin: gzip compressed data, was &quot;data9.bin&quot;, last modified: Thu Dec 28 13:34:36 2017, max compression, from Unix
+bandit12@bandit:/tmp/scottctaylor12$ mv data8.bin data8.gz
+bandit12@bandit:/tmp/scottctaylor12$ gunzip data8.gz
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.tar  data.txt  data5.tar  data6.tar  data8
+
+bandit12@bandit:/tmp/scottctaylor12$ file data8
+data8: ASCII text
+bandit12@bandit:/tmp/scottctaylor12$ cat data8
+The password is &amp;lt;PASSWORD&amp;gt;
+bandit12@bandit:/tmp/scottctaylor12$ ssh bandit13@localhost
+bandit13@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-13&quot;&gt;Level 13&lt;/h2&gt;
+&lt;p&gt;The password for the next level is stored in /etc/bandit_pass/bandit14 and can only be read by user bandit14. For this level, you don’t get the next password, but you get a private SSH key that can be used to log into the next level. Note: localhost is a hostname that refers to the machine you are working on&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit13@bandit:~$ ls
+sshkey.private
+bandit13@bandit:~$ ssh -i sshkey.private bandit14@localhost
+
+bandit14@bandit:~$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-14&quot;&gt;Level 14&lt;/h2&gt;
+&lt;p&gt;The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit14@bandit:~$ cat /etc/bandit_pass/bandit14 | ncat localhost 30000
+Correct!
+&amp;lt;PASSWORD&amp;gt;
+
+bandit14@bandit:~$ ssh bandit15@localhost
+bandit15@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-15&quot;&gt;Level 15&lt;/h2&gt;
+&lt;p&gt;The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL encryption.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit15@bandit:~$ cat /etc/bandit_pass/bandit15 | openssl s_client -ign_eof -connect localhost:30001
+CONNECTED(00000003)
+depth=0 CN = bandit
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 CN = bandit
+verify return:1
+---
+Certificate chain
+ 0 s:/CN=bandit
+   i:/CN=bandit
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIICsjCCAZqgAwIBAgIJAKZI1xYeoXFuMA0GCSqGSIb3DQEBCwUAMBExDzANBgNV
+BAMMBmJhbmRpdDAeFw0xNzEyMjgxMzIzNDBaFw0yNzEyMjYxMzIzNDBaMBExDzAN
+BgNVBAMMBmJhbmRpdDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAOcX
+ruVcnQUBeHJeNpSYayQExCJmcHzSCktnOnF/H4efWzxvLRWt5z4gYaKvTC9ixLrb
+K7a255GEaUbP/NVFpB/sn56uJc1ijz8u0hWQ3DwVe5ZrHUkNzAuvC2OeQgh2HanV
+5LwB1nmRZn90PG1puKxktMjXsGY7f9Yvx1/yVnZqu2Ev2uDA0RXij/T+hEqgDMI7
+y4ZFmuYD8z4b2kAUwj7RHh9LUKXKQlO+Pn8hchdR/4IK+Xc4+GFOin0XdQdUJaBD
+8quOUma424ejF5aB6QCSE82MmHlLBO2tzC9yKv8L8w+fUeQFECH1WfPC56GcAq3U
+IvgdjGrU/7EKN5XkONcCAwEAAaMNMAswCQYDVR0TBAIwADANBgkqhkiG9w0BAQsF
+AAOCAQEAnrOty7WAOpDGhuu0V8FqPoKNwFrqGuQCTeqhQ9LP0bFNhuH34pZ0JFsH
+L+Y/q4Um7+66mNJUFpMDykm51xLY2Y4oDNCzugy+fm5Q0EWKRwrq+hIM+5hs0RdC
+nARP+719ddmUiXF7r7IVP2gK+xqpa8+YcYnLuoXEtpKkrrQCCUiqabltU5yRMR77
+3wqB54txrB4IhwnXqpO23kTuRNrkG+JqDUkaVpvct+FAdT3PODMONP/oHII3SH9i
+ar/rI9k+4hjlg4NqOoduxX9M+iLJ0Zgj6HAg3EQVn4NHsgmuTgmknbhqTU3o4IwB
+XFnxdxVy0ImGYtvmnZDQCGivDok6jA==
+-----END CERTIFICATE-----
+subject=/CN=bandit
+issuer=/CN=bandit
+---
+No client certificate CA names sent
+---
+SSL handshake has read 1015 bytes and written 631 bytes
+---
+New, TLSv1/SSLv3, Cipher is AES128-SHA
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1
+    Cipher    : AES128-SHA
+    Session-ID: C1A2E20B002FD9A294EE41E11D00129A351140D2D6626578964FF563D75CCFB3
+    Session-ID-ctx:
+    Master-Key: 08D68848D7D1560B2D66420A24F494DEB83E2F15B08F0AD17EDB33BF2E9E746943B7EE4F40F63B2E03C4AEC544E89865
+    Key-Arg   : None
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - 08 f0 15 a5 d6 6f a0 e8-06 d6 bb a4 0c 33 eb 04   .....o.......3..
+    0010 - c7 66 49 73 33 89 d4 d9-d7 8e 1c aa a8 f8 dd 7b   .fIs3..........{
+    0020 - 20 4c 8c e4 eb f2 e9 8f-5d f5 d3 ac 32 25 48 ef    L......]...2%H.
+    0030 - 92 16 b1 81 87 61 8f 87-66 87 31 73 fa dd 69 a2   .....a..f.1s..i.
+    0040 - 87 41 17 e7 56 69 4e a5-c0 11 fe 33 60 f0 26 1c   .A..ViN....3`.&amp;amp;.
+    0050 - 44 ac b4 e5 9f 68 22 cb-34 9e 0f f0 61 01 74 91   D....h&quot;.4...a.t.
+    0060 - 83 82 38 d7 9f 59 a1 16-21 f0 f4 5d 42 d1 56 85   ..8..Y..!..]B.V.
+    0070 - cd d8 96 7f 57 52 f0 c3-ee 10 8c f5 20 ed 5a 89   ....WR...... .Z.
+    0080 - ab c8 81 33 86 c7 93 19-88 b1 94 60 a3 68 0e c9   ...3.......`.h..
+    0090 - db 10 30 bc 23 bc 4f 76-57 ea ee 02 ef 30 d5 a3   ..0.#.OvW....0..
+
+    Start Time: 1537042930
+    Timeout   : 300 (sec)
+    Verify return code: 18 (self signed certificate)
+---
+Correct!
+&amp;lt;PASSWORD&amp;gt;
+
+closed
+bandit15@bandit:~$ ssh bandit16@localhost
+bandit16@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Continue to OverTheWire Bandit &lt;a href=&quot;https://scottctaylor12.github.io/otw-bandit16-20.html&quot;&gt;Levels 16-20&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="overthewire-bandit" /><summary type="html">Level 11 The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions bandit11@bandit:~$ ls data.txt bandit11@bandit:~$ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m' The password is &amp;lt;PASSWORD&amp;gt; bandit11@bandit:~$ ssh bandit12@localhost bandit12@localhost's password:</summary></entry><entry><title type="html">OverTheWire Bandit Levels 0-5</title><link href="https://scottctaylor12.github.io/otw-bandit0-5.html" rel="alternate" type="text/html" title="OverTheWire Bandit Levels 0-5" /><published>2018-09-15T00:00:00+00:00</published><updated>2018-09-15T00:00:00+00:00</updated><id>https://scottctaylor12.github.io/otw-bandit0-5</id><content type="html" xml:base="https://scottctaylor12.github.io/otw-bandit0-5.html">&lt;p&gt;&lt;em&gt;“The Bandit wargame is aimed at absolute beginners. It will teach the basics needed to be able to play other wargames.”&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;enter-overthewire-bandit&quot;&gt;Enter OverTheWire Bandit&lt;/h2&gt;
+&lt;p&gt;The goal of this level is for you to log into the game using SSH. The host to which you need to connect is bandit.labs.overthewire.org, on port 2220. The username is bandit0 and the password is bandit0. Once logged in, go to the Level 1 page to find out how to beat Level 1.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh -p 2220 bandit0@bandit.labs.overthewire.org
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-0&quot;&gt;Level 0&lt;/h2&gt;
+&lt;p&gt;The password for the next level is stored in a file called readme located in the home directory. Use this password to log into bandit1 using SSH. Whenever you find a password for a level, use SSH (on port 2220) to log into that level and continue the game.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit0@bandit:~$ ls
+readme
+bandit0@bandit:~$ cat readme
+&amp;lt;PASSWORD&amp;gt;
+bandit0@bandit:~$ ssh bandit1@localhost
+bandit1@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-1&quot;&gt;Level 1&lt;/h2&gt;
+&lt;p&gt;The password for the next level is stored in a file called - located in the home directory&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit1@bandit:~$ ls
+-
+bandit1@bandit:~$ cat ./-
+&amp;lt;PASSWORD&amp;gt;
+bandit1@bandit:~$ ssh bandit2@localhost
+bandit2@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-2&quot;&gt;Level 2&lt;/h2&gt;
+&lt;p&gt;The password for the next level is stored in a file called spaces in this filename located in the home directory&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit2@bandit:~$ ls
+spaces in this filename
+bandit2@bandit:~$ cat ./&quot;spaces in this filename&quot;
+&amp;lt;PASSWORD&amp;gt;
+bandit2@bandit:~$ ssh bandit3@localhost
+bandit3@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-3&quot;&gt;Level 3&lt;/h2&gt;
+&lt;p&gt;The password for the next level is stored in a hidden file in the inhere directory.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit3@bandit:~$ cd inhere/
+bandit3@bandit:~/inhere$ ls -a
+.  ..  .hidden
+bandit3@bandit:~/inhere$ cat .hidden
+&amp;lt;PASSWORD&amp;gt;
+bandit3@bandit:~/inhere$ ssh bandit4@localhost
+bandit4@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-4&quot;&gt;Level 4&lt;/h2&gt;
+&lt;p&gt;The password for the next level is stored in the only human-readable file in the inhere directory. Tip: if your terminal is messed up, try the “reset” command.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit4@bandit:~$ ls
+inhere
+bandit4@bandit:~$ cd inhere/
+bandit4@bandit:~/inhere$ ls
+-file00  -file02  -file04  -file06  -file08
+-file01  -file03  -file05  -file07  -file09
+bandit4@bandit:~/inhere$ for i in $(ls); do file ./&quot;$i&quot;; done
+./-file00: data
+./-file01: data
+./-file02: data
+./-file03: data
+./-file04: data
+./-file05: data
+./-file06: data
+./-file07: ASCII text
+./-file08: data
+./-file09: data
+bandit4@bandit:~/inhere$ cat ./&quot;-file07&quot;
+&amp;lt;PASSWORD&amp;gt;
+bandit4@bandit:~/inhere$ ssh bandit5@localhost
+bandit5@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;level-5&quot;&gt;Level 5&lt;/h2&gt;
+&lt;p&gt;The password for the next level is stored in a file somewhere under the inhere directory and has all of the following properties:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;human-readable&lt;/li&gt;
+  &lt;li&gt;1033 bytes in size&lt;/li&gt;
+  &lt;li&gt;not executable&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bandit5@bandit:~$ ls
+inhere
+bandit5@bandit:~$ find inhere/ -type f -size 1033c -readable ! -executable
+inhere/maybehere07/.file2
+bandit5@bandit:~$ cat inhere/maybehere07/.file2
+&amp;lt;PASSWORD&amp;gt;
+bandit5@bandit:~$ ssh bandit6@localhost
+bandit6@localhost's password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Continue to OverTheWire Bandit &lt;a href=&quot;https://scottctaylor12.github.io/otw-bandit6-10.html&quot;&gt;Levels 6-10&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="overthewire-bandit" /><summary type="html">“The Bandit wargame is aimed at absolute beginners. It will teach the basics needed to be able to play other wargames.”</summary></entry><entry><title type="html">RHCE Review</title><link href="https://scottctaylor12.github.io/rhce-review.html" rel="alternate" type="text/html" title="RHCE Review" /><published>2018-09-11T00:00:00+00:00</published><updated>2018-09-11T00:00:00+00:00</updated><id>https://scottctaylor12.github.io/rhce-review</id><content type="html" xml:base="https://scottctaylor12.github.io/rhce-review.html">&lt;p&gt;&lt;em&gt;“An RHCE certification is earned by a Red Hat Certified System Administrator (RHCSA) who has demonstrated the knowledge, skill, and ability required of a senior system administrator responsible for Red Hat Enterprise Linux systems.”&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;exam-details&quot;&gt;Exam Details&lt;/h2&gt;
+&lt;p&gt;The RHCE, Red Hat Certified Engineer, is an exam that covers primarily server-side technologies such as NFS, Apache web server, and MariaDB. The exam is hands-on meaning test takers must complete tasks on a server to earn points. One can imagine the exam itself as a manager dropping off a list of system administration tasks that must be completed in 3.5 hours. By the end of that time, the servers then graded based on what was successfully configured AFTER a reboot. The passing score is a 210/300.&lt;/p&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+&lt;p&gt;Prior to passing the RHCE certification, I was Linux system administrator for 2.5 years. In this time, I had no prior knowledge, passed the RHCSA, and setup various systems such as Nagios, Spacewalk, BareOS/Bacula, and Splunk.&lt;/p&gt;
+
+&lt;h2 id=&quot;study-resources&quot;&gt;Study Resources&lt;/h2&gt;
+&lt;h3 id=&quot;home-lab&quot;&gt;Home Lab&lt;/h3&gt;
+&lt;p&gt;For the RHCSA, I was able to study the objectives using a few virtual machines on my laptop. However, the RHCE objectives require many services that together would make up a small network. Running this many virtual machines would scale past the limits of my laptop, so I decided to purchase a used Dell Optiplex for the purpose of studying for the RHCE. This was the BEST investment I made during this process. As I configured services such as DNS and NTP, I configured my home router to use these services rather than Google’s DNS. This made my studying more practical and I could see my DNS activity as I surfed the internet. As I studied more, my Dell Optiplex reached up to 9 servers with various systems like Samba, iSCSI, and SMTP. All of these servers could be actively used within my home network and made the studying feel more practical.&lt;/p&gt;
+
+&lt;h3 id=&quot;certdepot&quot;&gt;CertDepot&lt;/h3&gt;
+&lt;p&gt;One of the best websites out there while studying for the RHCE was &lt;a href=&quot;https://certdepot.net&quot;&gt;CertDepot&lt;/a&gt;. The individual running this site took all of the exam objectives and wrote tutorials on how to complete them in a step-by-step fashion. This was a great reference and some people could probably use this as their only study source and pass. Almost as valuable as the tutorials are the comments people leave at the bottom of each tutorial. People ask questions and show their errors as they attempt to complete the objective. Taking a look through the comments can be valuable to see what kind of errors can be expected and how to resolve them.&lt;/p&gt;
+
+&lt;h3 id=&quot;asghar-ghori&quot;&gt;Asghar Ghori&lt;/h3&gt;
+&lt;p&gt;Along with the previous two resources, I read Asghar Ghori’s book, &lt;a href=&quot;http://a.co/d/5Zd7Umj&quot;&gt;RHCSA &amp;amp; RHCE Red Hat Enterprise Linux 7&lt;/a&gt;. Rather than just memorizing the commands from CertDepot, understanding the underlying concepts was essential for me and that is what the book assisted with. Examples of the commands were in the book, however, information about the services and concepts could be found throughout the book explaining the real world use case. The author did a great job with the book and was a great resource while preparing for the exam.&lt;/p&gt;
+
+&lt;h2 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h2&gt;
+&lt;h3 id=&quot;learn-the-man-pages&quot;&gt;Learn the man pages&lt;/h3&gt;
+&lt;p&gt;3.5 hours may seem like a decent amount of time, but the time flies by and nervousness can cause exam takers to forget configurations and commands. With that being said, there are man pages that are ESSENTIAL for quick reference when commands are forgotten:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;man targetcli&lt;/li&gt;
+  &lt;li&gt;man iscsiadm&lt;/li&gt;
+  &lt;li&gt;man nmcli-examples&lt;/li&gt;
+  &lt;li&gt;man teamd.conf&lt;/li&gt;
+  &lt;li&gt;man firewalld.richlanguage&lt;/li&gt;
+  &lt;li&gt;cat /usr/share/doc/postfix-*/README_FILES/STANDARD_CONFIGURATION_README&lt;/li&gt;
+  &lt;li&gt;cat /usr/share/doc/httpd-*/httpd-vhosts.conf&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Knowing where to find the man pages and documentation can be more important than memorizing the actual commands. Trying to remember every detail is challenging, however, the man pages and documentation can assist tremendously!&lt;/p&gt;
+
+&lt;h3 id=&quot;copy-and-paste&quot;&gt;Copy and paste&lt;/h3&gt;
+&lt;p&gt;To avoid errors in configuration, try to copy and paste whenever possible. If a virtual host configuration is needed, simply copy and paste the template from the documentation and edit the values carefully to match the task. This will help avoid unnecessary troubleshooting later when a space is missing or an argument is spelled wrong! Every minute is precious, so do not waste it on simple mistakes that could have been avoided by copying.&lt;/p&gt;
+
+&lt;h3 id=&quot;reboot-often&quot;&gt;Reboot often&lt;/h3&gt;
+&lt;p&gt;The exam is graded after the systems are rebooted, so configurations must be persistent. Be sure to reboot after every few tasks to ensure the configurations are done correctly and last after a reboot. Or worse, ensure they do not break your system after a reboot. The last thing anyone wants to hear is that they received a 0/300 due to a machine not being bootable. To avoid this, reboot often and fix changes as needed.&lt;/p&gt;
+
+&lt;h2 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h2&gt;
+&lt;p&gt;Red Hat has an incredible exam environment that truly makes test takers know their stuff. This is no multiple choice exam that people can simply slide by. I would highly recommend others who are interested in Linux to study and attempt the exams. I use nearly all of my knowledge gained from the exams in my job and it has made me a better system administrator.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/rhce-cert.jpg&quot; alt=&quot;rhce-cert&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="sysadmin" /><summary type="html">“An RHCE certification is earned by a Red Hat Certified System Administrator (RHCSA) who has demonstrated the knowledge, skill, and ability required of a senior system administrator responsible for Red Hat Enterprise Linux systems.” Exam Details The RHCE, Red Hat Certified Engineer, is an exam that covers primarily server-side technologies such as NFS, Apache web server, and MariaDB. The exam is hands-on meaning test takers must complete tasks on a server to earn points. One can imagine the exam itself as a manager dropping off a list of system administration tasks that must be completed in 3.5 hours. By the end of that time, the servers then graded based on what was successfully configured AFTER a reboot. The passing score is a 210/300. Background Prior to passing the RHCE certification, I was Linux system administrator for 2.5 years. In this time, I had no prior knowledge, passed the RHCSA, and setup various systems such as Nagios, Spacewalk, BareOS/Bacula, and Splunk. Study Resources Home Lab For the RHCSA, I was able to study the objectives using a few virtual machines on my laptop. However, the RHCE objectives require many services that together would make up a small network. Running this many virtual machines would scale past the limits of my laptop, so I decided to purchase a used Dell Optiplex for the purpose of studying for the RHCE. This was the BEST investment I made during this process. As I configured services such as DNS and NTP, I configured my home router to use these services rather than Google’s DNS. This made my studying more practical and I could see my DNS activity as I surfed the internet. As I studied more, my Dell Optiplex reached up to 9 servers with various systems like Samba, iSCSI, and SMTP. All of these servers could be actively used within my home network and made the studying feel more practical. CertDepot One of the best websites out there while studying for the RHCE was CertDepot. The individual running this site took all of the exam objectives and wrote tutorials on how to complete them in a step-by-step fashion. This was a great reference and some people could probably use this as their only study source and pass. Almost as valuable as the tutorials are the comments people leave at the bottom of each tutorial. People ask questions and show their errors as they attempt to complete the objective. Taking a look through the comments can be valuable to see what kind of errors can be expected and how to resolve them. Asghar Ghori Along with the previous two resources, I read Asghar Ghori’s book, RHCSA &amp;amp; RHCE Red Hat Enterprise Linux 7. Rather than just memorizing the commands from CertDepot, understanding the underlying concepts was essential for me and that is what the book assisted with. Examples of the commands were in the book, however, information about the services and concepts could be found throughout the book explaining the real world use case. The author did a great job with the book and was a great resource while preparing for the exam. Exam Tips Learn the man pages 3.5 hours may seem like a decent amount of time, but the time flies by and nervousness can cause exam takers to forget configurations and commands. With that being said, there are man pages that are ESSENTIAL for quick reference when commands are forgotten: man targetcli man iscsiadm man nmcli-examples man teamd.conf man firewalld.richlanguage cat /usr/share/doc/postfix-*/README_FILES/STANDARD_CONFIGURATION_README cat /usr/share/doc/httpd-*/httpd-vhosts.conf Knowing where to find the man pages and documentation can be more important than memorizing the actual commands. Trying to remember every detail is challenging, however, the man pages and documentation can assist tremendously! Copy and paste To avoid errors in configuration, try to copy and paste whenever possible. If a virtual host configuration is needed, simply copy and paste the template from the documentation and edit the values carefully to match the task. This will help avoid unnecessary troubleshooting later when a space is missing or an argument is spelled wrong! Every minute is precious, so do not waste it on simple mistakes that could have been avoided by copying. Reboot often The exam is graded after the systems are rebooted, so configurations must be persistent. Be sure to reboot after every few tasks to ensure the configurations are done correctly and last after a reboot. Or worse, ensure they do not break your system after a reboot. The last thing anyone wants to hear is that they received a 0/300 due to a machine not being bootable. To avoid this, reboot often and fix changes as needed. Final Thoughts Red Hat has an incredible exam environment that truly makes test takers know their stuff. This is no multiple choice exam that people can simply slide by. I would highly recommend others who are interested in Linux to study and attempt the exams. I use nearly all of my knowledge gained from the exams in my job and it has made me a better system administrator.</summary></entry></feed>

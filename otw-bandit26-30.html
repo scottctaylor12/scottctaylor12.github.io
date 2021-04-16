@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/custom.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>OverTheWire Bandit Levels 26-30 | Scott Taylor</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="OverTheWire Bandit Levels 26-30" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Level 26 Good job getting a shell! Now hurry and grab the password for bandit27! bandit26@bandit:~$ ls bandit27-do text.txt bandit26@bandit:~$ ./bandit27-do Run a command as another user. Example: ./bandit27-do id bandit26@bandit:~$ ./bandit27-do cat /etc/bandit_pass/bandit27 &lt;PASSWORD&gt; bandit26@bandit:~$ ssh bandit27@localhost bandit27@localhost&#39;s password:" />
+<meta property="og:description" content="Level 26 Good job getting a shell! Now hurry and grab the password for bandit27! bandit26@bandit:~$ ls bandit27-do text.txt bandit26@bandit:~$ ./bandit27-do Run a command as another user. Example: ./bandit27-do id bandit26@bandit:~$ ./bandit27-do cat /etc/bandit_pass/bandit27 &lt;PASSWORD&gt; bandit26@bandit:~$ ssh bandit27@localhost bandit27@localhost&#39;s password:" />
+<link rel="canonical" href="https://scottctaylor12.github.io/otw-bandit26-30.html" />
+<meta property="og:url" content="https://scottctaylor12.github.io/otw-bandit26-30.html" />
+<meta property="og:site_name" content="Scott Taylor" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-09-16T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="OverTheWire Bandit Levels 26-30" />
+<script type="application/ld+json">
+{"description":"Level 26 Good job getting a shell! Now hurry and grab the password for bandit27! bandit26@bandit:~$ ls bandit27-do text.txt bandit26@bandit:~$ ./bandit27-do Run a command as another user. Example: ./bandit27-do id bandit26@bandit:~$ ./bandit27-do cat /etc/bandit_pass/bandit27 &lt;PASSWORD&gt; bandit26@bandit:~$ ssh bandit27@localhost bandit27@localhost&#39;s password:","headline":"OverTheWire Bandit Levels 26-30","dateModified":"2018-09-16T00:00:00+00:00","datePublished":"2018-09-16T00:00:00+00:00","url":"https://scottctaylor12.github.io/otw-bandit26-30.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://scottctaylor12.github.io/otw-bandit26-30.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://scottctaylor12.github.io/feed.xml" title="Scott Taylor" /></head>
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Scott Taylor</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/posts/">Posts</a></div>
+      </nav></div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">OverTheWire Bandit Levels 26-30</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-09-16T00:00:00+00:00" itemprop="datePublished">
+        
+        Sep 16, 2018
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="level-26">Level 26</h2>
+<p>Good job getting a shell! Now hurry and grab the password for bandit27!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit26@bandit:~$ ls
+bandit27-do  text.txt
+bandit26@bandit:~$ ./bandit27-do
+Run a command as another user.
+  Example: ./bandit27-do id
+bandit26@bandit:~$ ./bandit27-do cat /etc/bandit_pass/bandit27
+&lt;PASSWORD&gt;
+bandit26@bandit:~$ ssh bandit27@localhost
+bandit27@localhost's password:
+</code></pre></div></div>
+
+<h2 id="level-27">Level 27</h2>
+<p>There is a git repository at ssh://bandit27-git@localhost/home/bandit27-git/repo. The password for the user bandit27-git is the same as for the user bandit27.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit27@bandit:~$ mkdir /tmp/scottctaylor12
+bandit27@bandit:~$ chmod 777 /tmp/scottctaylor12
+bandit27@bandit:~$ cd /tmp/scottctaylor12
+bandit27@bandit:/tmp/scottctaylor12$ git clone ssh://bandit27-git@localhost/home/bandit27-git/repo
+bandit27-git@localhost's password:
+bandit27@bandit:/tmp/scottctaylor12$ ls
+repo
+bandit27@bandit:/tmp/scottctaylor12$ cd repo/
+bandit27@bandit:/tmp/scottctaylor12/repo$ ls
+README
+bandit27@bandit:/tmp/scottctaylor12/repo$ cat README
+The password to the next level is: &lt;PASSWORD&gt;
+bandit27@bandit:~$ ssh bandit28@localhost
+bandit28@localhost's password:
+</code></pre></div></div>
+
+<h2 id="level-28">Level 28</h2>
+<p>There is a git repository at ssh://bandit28-git@localhost/home/bandit28-git/repo. The password for the user bandit28-git is the same as for the user bandit28.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit28@bandit:~$ cd /tmp/scottctaylor12
+bandit28@bandit:/tmp/scottctaylor12$ git clone ssh://bandit28-git@localhost/home/bandit28-git/repo
+bandit28-git@localhost's password:
+bandit28@bandit:/tmp/scottctaylor12$ ls
+repo
+bandit28@bandit:/tmp/scottctaylor12$ cd repo/
+bandit28@bandit:/tmp/scottctaylor12/repo$ ls
+README.md
+bandit28@bandit:/tmp/scottctaylor12/repo$ cat README.md
+# Bandit Notes
+Some notes for level29 of bandit.
+
+## credentials
+
+- username: bandit29
+- password: xxxxxxxxxx
+
+bandit28@bandit:/tmp/scottctaylor12/repo$ git log
+commit 04f400829a9629fa7b62528ab7331293902fdfc8
+Author: Morla Porla &lt;morla@overthewire.org&gt;
+Date:   Sun Sep 16 22:43:29 2018 +0200
+
+    fix info leak
+
+commit aa59d7752b70ccf6d230fba806dd81458abc26d7
+Author: Morla Porla &lt;morla@overthewire.org&gt;
+Date:   Sun Sep 16 22:43:29 2018 +0200
+
+    add missing data
+
+commit bfce6960fd376159b2fba9ebf5ea844bfce8d1b7
+Author: Ben Dover &lt;noone@overthewire.org&gt;
+Date:   Sun Sep 16 22:43:29 2018 +0200
+
+    initial commit of README.md
+bandit28@bandit:/tmp/scottctaylor12/repo$ git checkout aa59d7752b70ccf6d230fba806dd81458abc26d7
+Note: checking out 'aa59d7752b70ccf6d230fba806dd81458abc26d7'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b &lt;new-branch-name&gt;
+
+HEAD is now at aa59d77... add missing data
+bandit28@bandit:/tmp/scottctaylor12/repo$ ls
+README.md
+bandit28@bandit:/tmp/scottctaylor12/repo$ cat README.md
+# Bandit Notes
+Some notes for level29 of bandit.
+
+## credentials
+
+- username: bandit29
+- password: &lt;PASSWORD&gt;
+
+bandit28@bandit:/tmp/scottctaylor12/repo$ ssh bandit29@localhost
+bandit29@localhost's password:
+</code></pre></div></div>
+<h2 id="level-29">Level 29</h2>
+<p>There is a git repository at ssh://bandit29-git@localhost/home/bandit29-git/repo. The password for the user bandit29-git is the same as for the user bandit29.
+Clone the repository and find the password for the next level.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit29@bandit:~$ cd /tmp/scottctaylor12
+bandit29@bandit:/tmp/scottctaylor12$ git clone ssh://bandit29-git@localhost/home/bandit29-git/repo
+Cloning into 'repo'...
+Could not create directory '/home/bandit29/.ssh'.
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+Are you sure you want to continue connecting (yes/no)? yes
+Failed to add the host to the list of known hosts (/home/bandit29/.ssh/known_hosts).
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit29-git@localhost's password:
+remote: Counting objects: 16, done.
+remote: Compressing objects: 100% (11/11), done.
+remote: Total 16 (delta 2), reused 0 (delta 0)
+Receiving objects: 100% (16/16), done.
+Resolving deltas: 100% (2/2), done.
+bandit29@bandit:/tmp/scottctaylor12$ ls
+repo
+bandit29@bandit:/tmp/scottctaylor12$ cd repo/
+bandit29@bandit:/tmp/scottctaylor12/repo$ ls
+README.md
+bandit29@bandit:/tmp/scottctaylor12/repo$ cat README.md
+# Bandit Notes
+Some notes for bandit30 of bandit.
+
+## credentials
+
+- username: bandit30
+- password: &lt;no passwords in production!&gt;
+
+bandit29@bandit:/tmp/scottctaylor12/repo$ git checkout dev
+Branch dev set up to track remote branch dev from origin.
+Switched to a new branch 'dev'
+bandit29@bandit:/tmp/scottctaylor12/repo$ ls
+code  README.md
+bandit29@bandit:/tmp/scottctaylor12/repo$ cat README.md
+# Bandit Notes
+Some notes for bandit30 of bandit.
+
+## credentials
+
+- username: bandit30
+- password: &lt;PASSWORD&gt;
+
+bandit29@bandit:/tmp/scottctaylor12/repo$ ssh bandit30@localhost
+bandit30@localhost's password:
+</code></pre></div></div>
+
+<h2 id="level-30">Level 30</h2>
+<p>There is a git repository at ssh://bandit30-git@localhost/home/bandit30-git/repo. The password for the user bandit30-git is the same as for the user bandit30.
+Clone the repository and find the password for the next level.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit30@bandit:~$ cd /tmp/scottctaylor12
+bandit30@bandit:/tmp/scottctaylor12$ git clone ssh://bandit30-git@localhost/home/bandit30-git/repo
+bandit30-git@localhost's password:
+
+bandit30@bandit:/tmp/scottctaylor12$ cd repo/
+bandit30@bandit:/tmp/scottctaylor12/repo$ ls
+README.md
+bandit30@bandit:/tmp/scottctaylor12/repo$ cat README.md
+just an epmty file... muahaha
+bandit30@bandit:/tmp/scottctaylor12/repo$ cd .git
+bandit30@bandit:/tmp/scottctaylor12/repo/.git$ ls
+branches  config  description  FETCH_HEAD  HEAD  hooks  index  info  logs  objects  ORIG_HEAD  packed-refs  refs
+bandit30@bandit:/tmp/scottctaylor12/repo/.git$ cat packed-refs
+# pack-refs with: peeled fully-peeled
+942f2e54a6297c2f7229523fabbccbb189373571 refs/remotes/origin/master
+f17132340e8ee6c159e0a4a6bc6f80e1da3b1aea refs/tags/secret
+bandit30@bandit:/tmp/scottctaylor12/repo/.git$ git show f17132340e8ee6c159e0a4a6bc6f80e1da3b1aea
+&lt;PASSWORD&gt;
+</code></pre></div></div>
+
+<p>Continue to OverTheWire Bandit <a href="https://scottctaylor12.github.io/otw-bandit31-34.html">Levels 31-34</a></p>
+
+  </div>
+
+  
+
+  <a class="u-url" href="/otw-bandit26-30.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Scott Taylor</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Scott Taylor</li><li><a class="u-email" href="mailto:scott.c.taylor12@gmail.com">scott.c.taylor12@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/scottctaylor12"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">scottctaylor12</span></a></li><li><a href="https://www.linkedin.com/in/scottctaylor12"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">scottctaylor12</span></a></li><li><a href="https://www.twitter.com/scottctaylor12"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">scottctaylor12</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>OSCP | RHCE | Splunk</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

