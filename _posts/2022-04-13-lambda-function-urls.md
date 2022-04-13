@@ -39,13 +39,11 @@ Therefore, the Lambda Function needs to read in each of these characteristics an
 Unlike \_xpn\_ who wrote their Lambda redirector in Go, I opted to write mine in Python.
 The code used for the Lamda function can be found in my red-lambda GitHub project.
 
-## Sending C2 Traffic 
+## Lambda Function URLs
 
 With the lambda function written, we now need to start sending C2 traffic to it!
 In \_xpn\_'s blog post, the AWS HTTP API Gateway service was used in conjunction with a Lambda function to expose it to the internet.
 However, with the new _Lambda Function URL_ feature, developers do not need the AWS HTTP API Gateway and can directly expose the function to the internet.
-
-### Lambda Function URLs
 
 As stated by AWS in their [announcement](https://aws.amazon.com/blogs/aws/announcing-aws-lambda-function-urls-built-in-https-endpoints-for-single-function-microservices/) about this new feature, _"sometimes all you need is a simple way to configure an HTTPS endpoint in front of your function without having to learn, configure, and operate additional services besides Lambda"_.
 Lambda Function URLs can be assigned to any Lambda function to provide quick and easy internet access. 
@@ -53,5 +51,20 @@ A randomly generated URL will be assigned to the function with the following sch
 In addition, the TLS certificate is valid and signed by AWS themselves which helps blend in with normal traffic.
 Below is a screenshot of the lambda function url in action with the TLS certificate information shown.
 
+![lambda-url-test](/images/lambda-url-cert.png){:class="img-responsive"}
 
-![rhce-cert](/images/rhce-cert.jpg){:class="img-responsive"}
+In this example, a lambda function is simply making another HTTP request to a server running the default apcahe web server page. However, the backend server can be anything such as a C2 server...
+
+## C2 over Lambda
+
+The diagram below shows what the C2 setup would look like using a Lambda Function URL. 
+By being able to "magically" give internet access to a private Lambda function, the only resource exposed to the internet for blue team to find is the url. 
+All other resources are hidden in a private VPC (virtual private cloud) which is great for OPSEC.
+
+![red-lambda-aws-topology](/images/red-lambda-aws-topo.png){:class="img-responsive"} 
+
+## Mythic 
+
+![mythic-configuration](/images/mythic-config.png){:class="img-responsive"}
+
+![athena-callback](/images/athena-callback.png){:class-"img-responsive"}
