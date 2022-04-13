@@ -58,13 +58,36 @@ In this example, a lambda function is simply making another HTTP request to a se
 ## C2 over Lambda
 
 The diagram below shows what the C2 setup would look like using a Lambda Function URL. 
-By being able to "magically" give internet access to a private Lambda function, the only resource exposed to the internet for blue team to find is the url. 
+By being able to "magically" give internet access to a private Lambda function, the only resource exposed to the internet for defenders to find is the url. 
 All other resources are hidden in a private VPC (virtual private cloud) which is great for OPSEC.
 
 ![red-lambda-aws-topology](/images/red-lambda-aws-topo.png){:class="img-responsive"} 
 
-## Mythic 
+To test this out with actual command and control, I setup [Mythic](https://github.com/its-a-feature/Mythic) written by [@its_a_feature_](https://twitter.com/its_a_feature_). 
+There are numerous agents written for Mythic and I decided to use [Athena](https://github.com/MythicAgents/Athena) which is a .NET 6 cross-platform agent developed by [@checkymander](https://twitter.com/checkymander). 
+When configuring the Athena payload in Mythic, I pointed the callback host to my Lambda Function URL as shown in the diagram below.
 
 ![mythic-configuration](/images/mythic-config.png){:class="img-responsive"}
 
+As mentioned previously, the lambda function is configured to read all HTTP requests and forward them to the actual Mythic C2 server behind the scenes.
+Once downloaded executed on my machine, the Athena agent successfully sent traffic through my lambda redirector and back to the Mythic server. Below is a screenshot of the successful C2 activity.
+
 ![athena-callback](/images/athena-callback.png){:class-"img-responsive"}
+
+## Deployment
+
+To ease the implementation and deployment of this C2 infrastructure, I developed a [CloudFormation](https://aws.amazon.com/cloudformation/) template which is an infrastructure as code AWS service used to automatically deploy infrastructure. The cloudformation template sets up:
+
+* VPC & Subnet 
+* EC2 instance with SSM enabled
+* Lambda Redirector 
+* Lambda Function URL
+
+A prerequisite to running CloudFormation is installing the [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) on your workstation. 
+Additionally, a valid AWS API key is needed in order to authenticate to AWS using the aws-cli. 
+Once this is setup on the workstation, deployment is done by running:
+
+```aws cloudformation deploy --stackname <insert name> --template  /path/to/template.yml --capabilities CAPABILITY_NAMED_IAM```
+
+This deployment process takes a few minutes to complete, so sip some tea and relax while it runs.
+After running the CloudFormation template, the C2 framework still needs to be installed and configured on the EC2 instance.
