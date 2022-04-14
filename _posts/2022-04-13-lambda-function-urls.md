@@ -10,6 +10,7 @@ tags: redteam, AWS, C2
 Using features of cloud providers for command and control (C2) is not a new concept. 
 That said, AWS has recently released a new feature called [_Lambda Function URLs_](https://aws.amazon.com/blogs/aws/announcing-aws-lambda-function-urls-built-in-https-endpoints-for-single-function-microservices/) which allows developers to **easily** expose their Lambda functions to the internet with a HTTPS url and AWS-signed TLS certificate.
 With a little coding and configuration, the AWS Lambda service and Lambda Function URL feature can make for a quick and easy C2 redirector.
+My [Red Lambda](https://github.com/scottctaylor12/Red-Lambda/) GitHub project contains all the code and instructions for deploying this C2 infrastructure.
 
 ## Background
 
@@ -38,7 +39,7 @@ To break this down step by step, the Lambda function has to perform the followin
 5. Forward the response to beacon.
 
 Unlike @\_xpn\_ who wrote their Lambda redirector in Go, I opted to write mine in Python.
-The code used for the Lamda function can be found in my red-lambda GitHub project.
+The code used for the Lamda function can be found in my [Red Lambda](https://github.com/scottctaylor12/Red-Lambda/blob/main/lambda.py) GitHub project.
 
 ## Lambda Function URLs
 
@@ -89,7 +90,6 @@ When configuring the Athena payload in Mythic, I pointed the callback host to my
 ![mythic-configuration](/images/mythic-config.png){:class="img-responsive"}
 
 As mentioned previously, the lambda function is configured to read all HTTP requests and forward them to the actual Mythic C2 server behind the scenes.
-Once downloaded executed on my machine, the Athena agent successfully sent traffic through my lambda redirector and back to the Mythic server. Below is a screenshot of the successful C2 activity.
+Once downloaded and executed on my machine, the Athena agent successfully sent traffic through my lambda redirector and back to the Mythic server. Below is a screenshot of the successful C2 activity.
 
 ![athena-callback](/images/athena-callback.png){:class-"img-responsive"}
-
