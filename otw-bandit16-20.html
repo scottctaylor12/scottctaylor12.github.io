@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/custom.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>OverTheWire Bandit Levels 16-20 | Scott Taylor</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="OverTheWire Bandit Levels 16-20" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Level 16 The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it. ``` bandit16@bandit:~$ nmap -p 31000-32000 localhost" />
+<meta property="og:description" content="Level 16 The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it. ``` bandit16@bandit:~$ nmap -p 31000-32000 localhost" />
+<link rel="canonical" href="https://scottctaylor12.github.io/otw-bandit16-20.html" />
+<meta property="og:url" content="https://scottctaylor12.github.io/otw-bandit16-20.html" />
+<meta property="og:site_name" content="Scott Taylor" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-09-15T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="OverTheWire Bandit Levels 16-20" />
+<script type="application/ld+json">
+{"description":"Level 16 The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it. ``` bandit16@bandit:~$ nmap -p 31000-32000 localhost","url":"https://scottctaylor12.github.io/otw-bandit16-20.html","@type":"BlogPosting","headline":"OverTheWire Bandit Levels 16-20","dateModified":"2018-09-15T00:00:00+00:00","datePublished":"2018-09-15T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://scottctaylor12.github.io/otw-bandit16-20.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://scottctaylor12.github.io/feed.xml" title="Scott Taylor" /><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-91255841-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-91255841-1', { 'optimize_id': 'GTM-T49MHHM'});
+</script></head>
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Scott Taylor</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/posts/">Posts</a></div>
+      </nav></div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">OverTheWire Bandit Levels 16-20</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-09-15T00:00:00+00:00" itemprop="datePublished">
+        
+        Sep 15, 2018
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="level-16">Level 16</h2>
+<p>The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit16@bandit:~$ nmap -p 31000-32000 localhost
+
+Starting Nmap 7.01 ( https://nmap.org ) at 2018-09-15 22:28 CEST
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00023s latency).
+Other addresses for localhost (not scanned): ::1
+Not shown: 996 closed ports
+PORT      STATE SERVICE
+31046/tcp open  unknown
+31518/tcp open  unknown
+31691/tcp open  unknown
+31790/tcp open  unknown
+31960/tcp open  unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 0.09 seconds
+
+bandit16@bandit:~$ for i in 31046 31518 31691 31790 31960; do echo $i;echo test | nc localhost $i; done
+31046
+test
+31518
+31691
+test
+31790
+31960
+test
+
+bandit16@bandit:~$ cat /etc/bandit_pass/bandit16
+&lt;BANDIT16 PASSWORD&gt;
+bandit16@bandit:~$ openssl s_client -connect localhost:31790
+CONNECTED(00000003)
+depth=0 CN = bandit
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 CN = bandit
+verify return:1
+---
+Certificate chain
+ 0 s:/CN=bandit
+   i:/CN=bandit
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIICsjCCAZqgAwIBAgIJAKZI1xYeoXFuMA0GCSqGSIb3DQEBCwUAMBExDzANBgNV
+BAMMBmJhbmRpdDAeFw0xNzEyMjgxMzIzNDBaFw0yNzEyMjYxMzIzNDBaMBExDzAN
+BgNVBAMMBmJhbmRpdDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAOcX
+ruVcnQUBeHJeNpSYayQExCJmcHzSCktnOnF/H4efWzxvLRWt5z4gYaKvTC9ixLrb
+K7a255GEaUbP/NVFpB/sn56uJc1ijz8u0hWQ3DwVe5ZrHUkNzAuvC2OeQgh2HanV
+5LwB1nmRZn90PG1puKxktMjXsGY7f9Yvx1/yVnZqu2Ev2uDA0RXij/T+hEqgDMI7
+y4ZFmuYD8z4b2kAUwj7RHh9LUKXKQlO+Pn8hchdR/4IK+Xc4+GFOin0XdQdUJaBD
+8quOUma424ejF5aB6QCSE82MmHlLBO2tzC9yKv8L8w+fUeQFECH1WfPC56GcAq3U
+IvgdjGrU/7EKN5XkONcCAwEAAaMNMAswCQYDVR0TBAIwADANBgkqhkiG9w0BAQsF
+AAOCAQEAnrOty7WAOpDGhuu0V8FqPoKNwFrqGuQCTeqhQ9LP0bFNhuH34pZ0JFsH
+L+Y/q4Um7+66mNJUFpMDykm51xLY2Y4oDNCzugy+fm5Q0EWKRwrq+hIM+5hs0RdC
+nARP+719ddmUiXF7r7IVP2gK+xqpa8+YcYnLuoXEtpKkrrQCCUiqabltU5yRMR77
+3wqB54txrB4IhwnXqpO23kTuRNrkG+JqDUkaVpvct+FAdT3PODMONP/oHII3SH9i
+ar/rI9k+4hjlg4NqOoduxX9M+iLJ0Zgj6HAg3EQVn4NHsgmuTgmknbhqTU3o4IwB
+XFnxdxVy0ImGYtvmnZDQCGivDok6jA==
+-----END CERTIFICATE-----
+subject=/CN=bandit
+issuer=/CN=bandit
+---
+No client certificate CA names sent
+---
+SSL handshake has read 1015 bytes and written 631 bytes
+---
+New, TLSv1/SSLv3, Cipher is AES128-SHA
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1
+    Cipher    : AES128-SHA
+    Session-ID: 937C0D0D739A2BF260B3394CFACA49A81BA1A2EA9EF6EC3CCEF5B6D5D871479E
+    Session-ID-ctx:
+    Master-Key: E1FA1DA038959B70B9E601A2FDDAA0605EAAEBB1A2ED6140EECF93DF3D8CC641D609316B5C68F5994A717A1D7309F03E
+    Key-Arg   : None
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - aa 3d 08 f7 55 9a 83 cb-75 cb f1 ae ef 7b e3 4c   .=..U...u....{.L
+    0010 - 3d 85 f3 4e 2a 8f 8f 18-f0 a7 a7 9f 48 d5 59 1c   =..N*.......H.Y.
+    0020 - a7 c9 9c ca 1f 03 0f 03-1a 21 e3 21 f8 5b 1b 88   .........!.!.[..
+    0030 - 90 a1 d2 3c 12 89 a0 66-da 10 45 a0 38 cb 47 62   ...&lt;...f..E.8.Gb
+    0040 - e7 9b fb 5e 41 e1 19 d7-40 97 18 8f bc a9 8f 7a   ...^A...@......z
+    0050 - fb 8c dc db 46 ac 9a 99-df a1 99 d0 68 81 85 2c   ....F.......h..,
+    0060 - d2 9c 8c ca ce 1a 9d 33-5c b1 2f d3 f4 60 d9 74   .......3\./..`.t
+    0070 - 07 58 d3 a9 4a 05 e4 80-5c b8 2f 1e b8 90 c3 cc   .X..J...\./.....
+    0080 - 7b af d6 75 a5 5a b8 db-6b 57 ae 77 68 86 e6 33   {..u.Z..kW.wh..3
+    0090 - e7 e8 8c 20 1d 7b b4 4a-89 21 8c 03 19 24 c9 2e   ... .{.J.!...$..
+
+    Start Time: 1537043981
+    Timeout   : 300 (sec)
+    Verify return code: 18 (self signed certificate)
+---
+cluFn7wTiGryunymYOu4RcffSxQluehd
+Correct!
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ
+imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ
+Ja6Lzb558YW3FZl87ORiO+rW4LCDCNd2lUvLE/GL2GWyuKN0K5iCd5TbtJzEkQTu
+DSt2mcNn4rhAL+JFr56o4T6z8WWAW18BR6yGrMq7Q/kALHYW3OekePQAzL0VUYbW
+JGTi65CxbCnzc/w4+mqQyvmzpWtMAzJTzAzQxNbkR2MBGySxDLrjg0LWN6sK7wNX
+x0YVztz/zbIkPjfkU1jHS+9EbVNj+D1XFOJuaQIDAQABAoIBABagpxpM1aoLWfvD
+KHcj10nqcoBc4oE11aFYQwik7xfW+24pRNuDE6SFthOar69jp5RlLwD1NhPx3iBl
+J9nOM8OJ0VToum43UOS8YxF8WwhXriYGnc1sskbwpXOUDc9uX4+UESzH22P29ovd
+d8WErY0gPxun8pbJLmxkAtWNhpMvfe0050vk9TL5wqbu9AlbssgTcCXkMQnPw9nC
+YNN6DDP2lbcBrvgT9YCNL6C+ZKufD52yOQ9qOkwFTEQpjtF4uNtJom+asvlpmS8A
+vLY9r60wYSvmZhNqBUrj7lyCtXMIu1kkd4w7F77k+DjHoAXyxcUp1DGL51sOmama
++TOWWgECgYEA8JtPxP0GRJ+IQkX262jM3dEIkza8ky5moIwUqYdsx0NxHgRRhORT
+8c8hAuRBb2G82so8vUHk/fur85OEfc9TncnCY2crpoqsghifKLxrLgtT+qDpfZnx
+SatLdt8GfQ85yA7hnWWJ2MxF3NaeSDm75Lsm+tBbAiyc9P2jGRNtMSkCgYEAypHd
+HCctNi/FwjulhttFx/rHYKhLidZDFYeiE/v45bN4yFm8x7R/b0iE7KaszX+Exdvt
+SghaTdcG0Knyw1bpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A
+R57hJglezIiVjv3aGwHwvlZvtszK6zV6oXFAu0ECgYAbjo46T4hyP5tJi93V5HDi
+Ttiek7xRVxUl+iU7rWkGAXFpMLFteQEsRr7PJ/lemmEY5eTDAFMLy9FL2m9oQWCg
+R8VdwSk8r9FGLS+9aKcV5PI/WEKlwgXinB3OhYimtiG2Cg5JCqIZFHxD6MjEGOiu
+L8ktHMPvodBwNsSBULpG0QKBgBAplTfC1HOnWiMGOU3KPwYWt0O6CdTkmJOmL8Ni
+blh9elyZ9FsGxsgtRBXRsqXuz7wtsQAgLHxbdLq/ZJQ7YfzOKU4ZxEnabvXnvWkU
+YOdjHdSOoKvDQNWu6ucyLRAWFuISeXw9a/9p7ftpxm0TSgyvmfLF2MIAEwyzRqaM
+77pBAoGAMmjmIJdjp+Ez8duyn3ieo36yrttF5NSsJLAbxFpdlc1gvtGCWW+9Cq0b
+dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3
+vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
+-----END RSA PRIVATE KEY-----
+
+closed
+
+COPY RSA KEY CONTENT TO /tmp/scottctaylor12/bandit17.key
+
+bandit16@bandit:~$ chmod 600 /tmp/scottctaylor12/bandit17.key
+bandit16@bandit:~$ ssh -i /tmp/scottctaylor12/bandit17.key bandit17@localhost
+
+bandit17@bandit:~$
+</code></pre></div></div>
+
+<h2 id="level-17">Level 17</h2>
+<p>There are 2 files in the homedirectory: passwords.old and passwords.new. The password for the next level is in passwords.new and is the only line that has been changed between passwords.old and passwords.new</p>
+
+<p><strong>NOTE: if you have solved this level and see ‘Byebye!’ when trying to log into bandit18, this is related to the next level, bandit19</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit17@bandit:~$ ls
+passwords.new  passwords.old
+bandit17@bandit:~$ diff passwords.old passwords.new
+42c42
+&lt; 6vcSC74ROI95NqkKaeEC2ABVMDX9TyUr
+---
+&gt; &lt;PASSWORD&gt;
+bandit17@bandit:~$ ssh bandit18@localhost
+bandit18@localhost's password:
+.
+.
+Byebye !
+Connection to localhost closed.
+</code></pre></div></div>
+<h2 id="level-18">Level 18</h2>
+<p>The password for the next level is stored in a file readme in the homedirectory. Unfortunately, someone has modified .bashrc to log you out when you log in with SSH.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit17@bandit:~$ ssh bandit18@localhost "cat /home/bandit18/readme"
+bandit18@localhost's password:
+&lt;PASSWORD&gt;
+ssh bandit19@localhost
+bandit19@localhost's password:
+</code></pre></div></div>
+
+<h2 id="level-19">Level 19</h2>
+<p>To gain access to the next level, you should use the setuid binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit19@bandit:~$ ls
+bandit20-do
+bandit19@bandit:~$ ./bandit20-do
+Run a command as another user.
+  Example: ./bandit20-do id
+bandit19@bandit:~$ ./bandit20-do cat /etc/bandit_pass/bandit20
+&lt;PASSWORD&gt;
+bandit19@bandit:~$ ssh bandit20@localhost
+bandit20:localhost's password:
+</code></pre></div></div>
+
+<h2 id="level-20">Level 20</h2>
+<p>There is a setuid binary in the homedirectory that does the following: it makes a connection to localhost on the port you specify as a commandline argument. It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). If the password is correct, it will transmit the password for the next level (bandit21).</p>
+
+<p><em>SESSION 1</em></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit20@bandit:~$ cat /etc/bandit_pass/bandit20 | nc -nvlp 9999
+Listening on [0.0.0.0] (family 0, port 9999)
+</code></pre></div></div>
+<p><em>SESSION 2</em></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit20@bandit:~$ ls
+suconnect
+bandit20@bandit:~$ ./suconnect 9999
+Read: &lt;PASSWORD&gt;
+Password matches, sending next password
+bandit20@bandit:~$
+</code></pre></div></div>
+<p><em>SESSION 1</em></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Connection from [127.0.0.1] port 9999 [tcp/*] accepted (family 2, sport 44516)
+&lt;PASSWORD&gt;
+bandit20@bandit:~$ ssh bandit21@localhost
+bandit21@localhost's password:
+</code></pre></div></div>
+
+<p>Continue to OverTheWire Bandit <a href="https://scottctaylor12.github.io/otw-bandit21-25.html">Levels 21-25</a></p>
+
+  </div>
+
+  
+
+  <a class="u-url" href="/otw-bandit16-20.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Scott Taylor</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Scott Taylor</li><li><a class="u-email" href="mailto:scott.c.taylor12@gmail.com">scott.c.taylor12@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/scottctaylor12"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">scottctaylor12</span></a></li><li><a href="https://www.linkedin.com/in/scottctaylor12"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">scottctaylor12</span></a></li><li><a href="https://www.twitter.com/scottctaylor12"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">scottctaylor12</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>OSCP | RHCE | Splunk</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

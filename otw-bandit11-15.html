@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/custom.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>OverTheWire Bandit Levels 11-15 | Scott Taylor</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="OverTheWire Bandit Levels 11-15" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Level 11 The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions bandit11@bandit:~$ ls data.txt bandit11@bandit:~$ cat data.txt | tr &#39;A-Za-z&#39; &#39;N-ZA-Mn-za-m&#39; The password is &lt;PASSWORD&gt; bandit11@bandit:~$ ssh bandit12@localhost bandit12@localhost&#39;s password:" />
+<meta property="og:description" content="Level 11 The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions bandit11@bandit:~$ ls data.txt bandit11@bandit:~$ cat data.txt | tr &#39;A-Za-z&#39; &#39;N-ZA-Mn-za-m&#39; The password is &lt;PASSWORD&gt; bandit11@bandit:~$ ssh bandit12@localhost bandit12@localhost&#39;s password:" />
+<link rel="canonical" href="https://scottctaylor12.github.io/otw-bandit11-15.html" />
+<meta property="og:url" content="https://scottctaylor12.github.io/otw-bandit11-15.html" />
+<meta property="og:site_name" content="Scott Taylor" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-09-15T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="OverTheWire Bandit Levels 11-15" />
+<script type="application/ld+json">
+{"description":"Level 11 The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions bandit11@bandit:~$ ls data.txt bandit11@bandit:~$ cat data.txt | tr &#39;A-Za-z&#39; &#39;N-ZA-Mn-za-m&#39; The password is &lt;PASSWORD&gt; bandit11@bandit:~$ ssh bandit12@localhost bandit12@localhost&#39;s password:","url":"https://scottctaylor12.github.io/otw-bandit11-15.html","@type":"BlogPosting","headline":"OverTheWire Bandit Levels 11-15","dateModified":"2018-09-15T00:00:00+00:00","datePublished":"2018-09-15T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://scottctaylor12.github.io/otw-bandit11-15.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://scottctaylor12.github.io/feed.xml" title="Scott Taylor" /><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-91255841-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-91255841-1', { 'optimize_id': 'GTM-T49MHHM'});
+</script></head>
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Scott Taylor</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/posts/">Posts</a></div>
+      </nav></div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">OverTheWire Bandit Levels 11-15</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-09-15T00:00:00+00:00" itemprop="datePublished">
+        
+        Sep 15, 2018
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="level-11">Level 11</h2>
+<p>The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit11@bandit:~$ ls
+data.txt
+bandit11@bandit:~$ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+The password is &lt;PASSWORD&gt;
+bandit11@bandit:~$ ssh bandit12@localhost
+bandit12@localhost's password:
+</code></pre></div></div>
+
+<h2 id="level-12">Level 12</h2>
+<p>The password for the next level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work using mkdir. For example: mkdir /tmp/myname123. Then copy the datafile using cp, and rename it using mv (read the manpages!)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit12@bandit:~$ ls
+data.txt
+bandit12@bandit:~$ mkdir /tmp/scottctaylor12
+bandit12@bandit:~$ cp data.txt /tmp/scottctaylor12
+bandit12@bandit:~$ cd /tmp/scottctaylor12
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.txt
+bandit12@bandit:/tmp/scottctaylor12$ file data.txt
+data.txt: ASCII text
+bandit12@bandit:/tmp/scottctaylor12$ cat data.txt
+00000000: 1f8b 0808 ecf2 445a 0203 6461 7461 322e  ......DZ..data2.
+00000010: 6269 6e00 0149 02b6 fd42 5a68 3931 4159  bin..I...BZh91AY
+00000020: 2653 5930 3e1b 4000 0014 ffff dde3 2b6d  &amp;SY0&gt;.@.......+m
+00000030: afff dd1e dfd7 ffbf bdfb 3f67 bfff ffff  ..........?g....
+00000040: bde5 bfff aff7 bfdb e5ff ffef b001 39b0  ..............9.
+00000050: 480d 3400 0068 0068 1a00 0000 01a3 4000  H.4..h.h......@.
+00000060: 0001 a643 4d34 0000 d00d 0698 800d 1934  ...CM4.........4
+00000070: d0c4 d034 1a36 a343 646a 1c9a 3206 9a00  ...4.6.Cdj..2...
+00000080: 3406 8000 068d 064f 51a3 4000 000f 5000  4......OQ.@...P.
+00000090: 6868 0034 d308 0da4 6990 1a03 4000 6869  hh.4....i...@.hi
+000000a0: a0d0 00d3 2341 94d0 0006 8006 8034 1a34  ....#A.......4.4
+000000b0: 00d0 d000 0310 d068 3400 001e 900d 1a19  .......h4.......
+000000c0: 0062 68d3 4680 640f 48d0 d320 0068 621a  .bh.F.d.H.. .hb.
+000000d0: 0543 0116 180c 6232 a7d7 82c8 7bd4 2374  .C....b2....{.#t
+000000e0: 1de5 e375 b7b9 0b78 2d37 bd61 5cdf 40da  ...u...x-7.a\.@.
+000000f0: b8e5 3258 213d e4bb ecb2 8d51 84f9 3bd0  ..2X!=.....Q..;.
+00000100: b1c9 ef2a bcff 45cc 1f1c 0028 1cfe 8784  ...*..E....(....
+00000110: 78a9 7611 0a81 c4d5 cb26 4b80 7888 c9bc  x.v......&amp;K.x...
+00000120: 2b3e a351 59ae c1fd 36c8 286e d6c3 bb2b  +&gt;.QY...6.(n...+
+00000130: b280 d19b 70b3 190a 0204 4603 9f79 e2b8  ....p.....F..y..
+00000140: cf1b 8330 fcad 3780 86c2 5c3d 5bc9 4631  ...0..7...\=[.F1
+00000150: 3718 5e2e a88c 34e6 8461 35ad c14f 6fd4  7.^...4..a5..Oo.
+00000160: 31dd a5cc 5223 545e e01d ff23 cde3 22cc  1...R#T^...#..".
+00000170: 22fa a62b e27a dfa5 d4f0 c326 28ef a4b3  "..+.z.....&amp;(...
+00000180: adc5 149c 1c27 dbc4 97b9 6342 487e bfe3  .....'....cBH~..
+00000190: 02ee d63e 3379 8ebc d559 c670 7987 da1d  ...&gt;3y...Y.py...
+000001a0: 4c4b 5ec4 9965 075b 9d0b 08ee df17 d07c  LK^..e.[.......|
+000001b0: ea9a 5fbf 43e7 d405 5239 1437 0c8a 34cd  .._.C...R9.7..4.
+000001c0: be6f a949 b061 68e8 6ba5 c9ba 4112 0819  .o.I.ah.k...A...
+000001d0: 7cb9 a3c8 bff1 0895 1819 8f80 407e dc32  |...........@~.2
+000001e0: 9269 ca68 3f58 bb30 cd9b fcd6 0006 1224  .i.h?X.0.......$
+000001f0: 177b fe66 c676 01f0 a5bc 9131 6746 cc85  .{.f.v.....1gF..
+00000200: 1a39 e46f 6b9a 7bd4 694b e999 c300 b57e  .9.ok.{.iK.....~
+00000210: 9b0a 1229 fac1 cc0c 24fb a905 a06a b8cf  ...)....$....j..
+00000220: cb56 2a73 6016 6950 8208 5785 af54 0d42  .V*s`.iP..W..T.B
+00000230: 754e 5a48 8835 2b47 aa9b c45e 4ca8 a7a0  uNZH.5+G...^L...
+00000240: 61dd e070 7717 9346 5f14 d808 8263 7746  a..pw..F_....cwF
+00000250: 5100 3af8 fa20 ff8b b922 9c28 4818 1f0d  Q.:.. ...".(H...
+00000260: a000 e793 1e61 4902 0000                 .....aI...
+
+bandit12@bandit:/tmp/scottctaylor12$ cat data.txt | xxd -r &gt; data2
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.txt  data2
+
+bandit12@bandit:/tmp/scottctaylor12$ file data2
+data2: gzip compressed data, was "data2.bin", last modified: Thu Dec 28 13:34:36 2017, max compression, from Unix
+bandit12@bandit:/tmp/scottctaylor12$ mv data2 data2.gz
+bandit12@bandit:/tmp/scottctaylor12$ gunzip data2.gz
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.txt  data2
+
+bandit12@bandit:/tmp/scottctaylor12$ file data2
+data2: bzip2 compressed data, block size = 900k
+bandit12@bandit:/tmp/scottctaylor12$ mv data2 data2.bz
+bandit12@bandit:/tmp/scottctaylor12$ bunzip2 data2.bz
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.txt  data2
+
+bandit12@bandit:/tmp/scottctaylor12$ file data2
+data2: gzip compressed data, was "data4.bin", last modified: Thu Dec 28 13:34:36 2017, max compression, from Unix
+bandit12@bandit:/tmp/scottctaylor12$ mv data2 data2.gz
+bandit12@bandit:/tmp/scottctaylor12$ gunzip data2.gz
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.txt  data2
+
+bandit12@bandit:/tmp/scottctaylor12$ file data2
+data2: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/scottctaylor12$ mv data2 data.tar
+bandit12@bandit:/tmp/scottctaylor12$ tar -xvf data.tar
+data5.bin
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.tar  data.txt  data5.bin
+
+bandit12@bandit:/tmp/scottctaylor12$ file data5.bin
+data5.bin: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/scottctaylor12$ mv data5.bin data5.tar
+bandit12@bandit:/tmp/scottctaylor12$ tar -xvf data5.tar
+data6.bin
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.tar  data.txt  data5.tar  data6.bin
+
+bandit12@bandit:/tmp/scottctaylor12$ file data6.bin
+data6.bin: bzip2 compressed data, block size = 900k
+bandit12@bandit:/tmp/scottctaylor12$ mv data6.bin data6.bz
+bandit12@bandit:/tmp/scottctaylor12$ bunzip2 data6.bz
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.tar  data.txt  data5.tar  data6
+
+bandit12@bandit:/tmp/scottctaylor12$ file data6
+data6: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/scottctaylor12$ mv data6 data6.tar
+bandit12@bandit:/tmp/scottctaylor12$ tar -xvf data6.tar
+data8.bin
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.tar  data.txt  data5.tar  data6.tar  data8.bin
+
+bandit12@bandit:/tmp/scottctaylor12$ file data8.bin
+data8.bin: gzip compressed data, was "data9.bin", last modified: Thu Dec 28 13:34:36 2017, max compression, from Unix
+bandit12@bandit:/tmp/scottctaylor12$ mv data8.bin data8.gz
+bandit12@bandit:/tmp/scottctaylor12$ gunzip data8.gz
+bandit12@bandit:/tmp/scottctaylor12$ ls
+data.tar  data.txt  data5.tar  data6.tar  data8
+
+bandit12@bandit:/tmp/scottctaylor12$ file data8
+data8: ASCII text
+bandit12@bandit:/tmp/scottctaylor12$ cat data8
+The password is &lt;PASSWORD&gt;
+bandit12@bandit:/tmp/scottctaylor12$ ssh bandit13@localhost
+bandit13@localhost's password:
+</code></pre></div></div>
+
+<h2 id="level-13">Level 13</h2>
+<p>The password for the next level is stored in /etc/bandit_pass/bandit14 and can only be read by user bandit14. For this level, you don’t get the next password, but you get a private SSH key that can be used to log into the next level. Note: localhost is a hostname that refers to the machine you are working on</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit13@bandit:~$ ls
+sshkey.private
+bandit13@bandit:~$ ssh -i sshkey.private bandit14@localhost
+
+bandit14@bandit:~$
+</code></pre></div></div>
+
+<h2 id="level-14">Level 14</h2>
+<p>The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit14@bandit:~$ cat /etc/bandit_pass/bandit14 | ncat localhost 30000
+Correct!
+&lt;PASSWORD&gt;
+
+bandit14@bandit:~$ ssh bandit15@localhost
+bandit15@localhost's password:
+</code></pre></div></div>
+
+<h2 id="level-15">Level 15</h2>
+<p>The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL encryption.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bandit15@bandit:~$ cat /etc/bandit_pass/bandit15 | openssl s_client -ign_eof -connect localhost:30001
+CONNECTED(00000003)
+depth=0 CN = bandit
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 CN = bandit
+verify return:1
+---
+Certificate chain
+ 0 s:/CN=bandit
+   i:/CN=bandit
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIICsjCCAZqgAwIBAgIJAKZI1xYeoXFuMA0GCSqGSIb3DQEBCwUAMBExDzANBgNV
+BAMMBmJhbmRpdDAeFw0xNzEyMjgxMzIzNDBaFw0yNzEyMjYxMzIzNDBaMBExDzAN
+BgNVBAMMBmJhbmRpdDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAOcX
+ruVcnQUBeHJeNpSYayQExCJmcHzSCktnOnF/H4efWzxvLRWt5z4gYaKvTC9ixLrb
+K7a255GEaUbP/NVFpB/sn56uJc1ijz8u0hWQ3DwVe5ZrHUkNzAuvC2OeQgh2HanV
+5LwB1nmRZn90PG1puKxktMjXsGY7f9Yvx1/yVnZqu2Ev2uDA0RXij/T+hEqgDMI7
+y4ZFmuYD8z4b2kAUwj7RHh9LUKXKQlO+Pn8hchdR/4IK+Xc4+GFOin0XdQdUJaBD
+8quOUma424ejF5aB6QCSE82MmHlLBO2tzC9yKv8L8w+fUeQFECH1WfPC56GcAq3U
+IvgdjGrU/7EKN5XkONcCAwEAAaMNMAswCQYDVR0TBAIwADANBgkqhkiG9w0BAQsF
+AAOCAQEAnrOty7WAOpDGhuu0V8FqPoKNwFrqGuQCTeqhQ9LP0bFNhuH34pZ0JFsH
+L+Y/q4Um7+66mNJUFpMDykm51xLY2Y4oDNCzugy+fm5Q0EWKRwrq+hIM+5hs0RdC
+nARP+719ddmUiXF7r7IVP2gK+xqpa8+YcYnLuoXEtpKkrrQCCUiqabltU5yRMR77
+3wqB54txrB4IhwnXqpO23kTuRNrkG+JqDUkaVpvct+FAdT3PODMONP/oHII3SH9i
+ar/rI9k+4hjlg4NqOoduxX9M+iLJ0Zgj6HAg3EQVn4NHsgmuTgmknbhqTU3o4IwB
+XFnxdxVy0ImGYtvmnZDQCGivDok6jA==
+-----END CERTIFICATE-----
+subject=/CN=bandit
+issuer=/CN=bandit
+---
+No client certificate CA names sent
+---
+SSL handshake has read 1015 bytes and written 631 bytes
+---
+New, TLSv1/SSLv3, Cipher is AES128-SHA
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1
+    Cipher    : AES128-SHA
+    Session-ID: C1A2E20B002FD9A294EE41E11D00129A351140D2D6626578964FF563D75CCFB3
+    Session-ID-ctx:
+    Master-Key: 08D68848D7D1560B2D66420A24F494DEB83E2F15B08F0AD17EDB33BF2E9E746943B7EE4F40F63B2E03C4AEC544E89865
+    Key-Arg   : None
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - 08 f0 15 a5 d6 6f a0 e8-06 d6 bb a4 0c 33 eb 04   .....o.......3..
+    0010 - c7 66 49 73 33 89 d4 d9-d7 8e 1c aa a8 f8 dd 7b   .fIs3..........{
+    0020 - 20 4c 8c e4 eb f2 e9 8f-5d f5 d3 ac 32 25 48 ef    L......]...2%H.
+    0030 - 92 16 b1 81 87 61 8f 87-66 87 31 73 fa dd 69 a2   .....a..f.1s..i.
+    0040 - 87 41 17 e7 56 69 4e a5-c0 11 fe 33 60 f0 26 1c   .A..ViN....3`.&amp;.
+    0050 - 44 ac b4 e5 9f 68 22 cb-34 9e 0f f0 61 01 74 91   D....h".4...a.t.
+    0060 - 83 82 38 d7 9f 59 a1 16-21 f0 f4 5d 42 d1 56 85   ..8..Y..!..]B.V.
+    0070 - cd d8 96 7f 57 52 f0 c3-ee 10 8c f5 20 ed 5a 89   ....WR...... .Z.
+    0080 - ab c8 81 33 86 c7 93 19-88 b1 94 60 a3 68 0e c9   ...3.......`.h..
+    0090 - db 10 30 bc 23 bc 4f 76-57 ea ee 02 ef 30 d5 a3   ..0.#.OvW....0..
+
+    Start Time: 1537042930
+    Timeout   : 300 (sec)
+    Verify return code: 18 (self signed certificate)
+---
+Correct!
+&lt;PASSWORD&gt;
+
+closed
+bandit15@bandit:~$ ssh bandit16@localhost
+bandit16@localhost's password:
+</code></pre></div></div>
+
+<p>Continue to OverTheWire Bandit <a href="https://scottctaylor12.github.io/otw-bandit16-20.html">Levels 16-20</a></p>
+
+  </div>
+
+  
+
+  <a class="u-url" href="/otw-bandit11-15.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Scott Taylor</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Scott Taylor</li><li><a class="u-email" href="mailto:scott.c.taylor12@gmail.com">scott.c.taylor12@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/scottctaylor12"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">scottctaylor12</span></a></li><li><a href="https://www.linkedin.com/in/scottctaylor12"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">scottctaylor12</span></a></li><li><a href="https://www.twitter.com/scottctaylor12"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">scottctaylor12</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>OSCP | RHCE | Splunk</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

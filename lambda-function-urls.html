@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/custom.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>AWS Lambda Function URLs for C2 Redirection | Scott Taylor</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="AWS Lambda Function URLs for C2 Redirection" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Leverage the new AWS Lambda Function URL feature to expose a function to the Internet and redirect red team command and control traffic." />
+<meta property="og:description" content="Leverage the new AWS Lambda Function URL feature to expose a function to the Internet and redirect red team command and control traffic." />
+<link rel="canonical" href="https://scottctaylor12.github.io/lambda-function-urls.html" />
+<meta property="og:url" content="https://scottctaylor12.github.io/lambda-function-urls.html" />
+<meta property="og:site_name" content="Scott Taylor" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-04-13T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="AWS Lambda Function URLs for C2 Redirection" />
+<script type="application/ld+json">
+{"description":"Leverage the new AWS Lambda Function URL feature to expose a function to the Internet and redirect red team command and control traffic.","url":"https://scottctaylor12.github.io/lambda-function-urls.html","@type":"BlogPosting","headline":"AWS Lambda Function URLs for C2 Redirection","dateModified":"2022-04-13T00:00:00+00:00","datePublished":"2022-04-13T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://scottctaylor12.github.io/lambda-function-urls.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://scottctaylor12.github.io/feed.xml" title="Scott Taylor" /><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-91255841-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-91255841-1', { 'optimize_id': 'GTM-T49MHHM'});
+</script></head>
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Scott Taylor</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/posts/">Posts</a></div>
+      </nav></div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">AWS Lambda Function URLs for C2 Redirection</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-04-13T00:00:00+00:00" itemprop="datePublished">
+        
+        Apr 13, 2022
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="overview">Overview</h2>
+
+<p>Using features of cloud providers for command and control (C2) is not a new concept. 
+That said, AWS has recently released a new feature called <a href="https://aws.amazon.com/blogs/aws/announcing-aws-lambda-function-urls-built-in-https-endpoints-for-single-function-microservices/"><em>Lambda Function URLs</em></a> which allows developers to <strong>easily</strong> expose their Lambda functions to the internet with a HTTPS url and AWS-signed TLS certificate.
+With a little coding and configuration, the AWS Lambda service and Lambda Function URL feature can make for a quick and easy C2 redirector.
+My <a href="https://github.com/scottctaylor12/Red-Lambda/">Red Lambda</a> GitHub project contains all the code and instructions for deploying this C2 infrastructure.</p>
+
+<h2 id="background">Background</h2>
+
+<p>AWS has a service called Lambda which allows developers to write event-driven code which can be triggered through various events. 
+Some triggers include other AWS service actions, a scheduled timer, or an HTTP(S) request. 
+That last one sounds a bit interesting to red teamers! 
+So how does one code a Lambda function and send HTTP(S) traffic to it?</p>
+
+<h2 id="developing-a-lambda-redirector">Developing a Lambda redirector</h2>
+
+<p>The concept of using lambda functions as a redirector is not new.
+In fact, <a href="https://twitter.com/_xpn_">@_xpn_</a> published a blog post back in early 2020 titled <a href="https://blog.xpnsec.com/aws-lambda-redirector/">AWS Lambda Redirector</a> which covers exactly how one could accomplish this (highly recommend you read).
+To summarize the blog post a bit, Cobalt Strike can send traffic in three primary ways via HTTPS:</p>
+
+<ol>
+  <li>HTTP body</li>
+  <li>HTTP Headers</li>
+  <li>HTTP query strings</li>
+</ol>
+
+<p>Therefore, the Lambda Function needs to read in each of these characteristics and forward them to the actual C2 server hidden behind the scenes. 
+To break this down step by step, the Lambda function has to perform the following:</p>
+
+<ol>
+  <li>Read the full HTTP request sent from beacon, including any POST body.</li>
+  <li>Build a new HTTP request ensuring that the received HTTP headers, query string parameters, and POST body (if included) received from the beacon are used.</li>
+  <li>Forward the HTTP request to the team server and receive the response.</li>
+  <li>Add the received HTTP headers and body (if included) to the API gateway response.</li>
+  <li>Forward the response to beacon.</li>
+</ol>
+
+<p>Unlike @_xpn_ who wrote their Lambda redirector in Go, I opted to write mine in Python.
+The code used for the Lamda function can be found in my <a href="https://github.com/scottctaylor12/Red-Lambda/blob/main/lambda.py">Red Lambda</a> GitHub project.</p>
+
+<h2 id="lambda-function-urls">Lambda Function URLs</h2>
+
+<p>With the lambda function written, we now need to start sending C2 traffic to it!
+In _xpn_’s blog post, the AWS HTTP API Gateway service was used in conjunction with a Lambda function to expose it to the internet.
+However, with the new <em>Lambda Function URL</em> feature, developers do not need the AWS HTTP API Gateway and can directly expose the function to the internet.</p>
+
+<p>As stated by AWS in their <a href="https://aws.amazon.com/blogs/aws/announcing-aws-lambda-function-urls-built-in-https-endpoints-for-single-function-microservices/">announcement</a> about this new feature, <em>“sometimes all you need is a simple way to configure an HTTPS endpoint in front of your function without having to learn, configure, and operate additional services besides Lambda”</em>.
+Lambda Function URLs can be assigned to any Lambda function to provide quick and easy internet access. 
+A randomly generated URL will be assigned to the function with the following scheme: <code class="language-plaintext highlighter-rouge">https://&lt;random-id&gt;.lambda-url.&lt;region&gt;.on.aws</code>.
+In addition, the TLS certificate is valid and signed by AWS themselves which helps blend in with normal traffic.
+Below is a screenshot of the lambda function url in action with the TLS certificate information shown.</p>
+
+<p><img src="/images/lambda-url-cert.png" alt="lambda-url-test" class="img-responsive" /></p>
+
+<p>In this example, a lambda function is simply making another HTTP request to a server running the default apcahe web server page. However, the backend server can be anything such as a C2 server…</p>
+
+<h2 id="deployment">Deployment</h2>
+
+<p>The diagram below shows what the C2 infrastructure looks like using a Lambda Function URL. 
+With the ability to “magically” give internet access to a private Lambda function, the only resource exposed to the internet for defenders to find is the url. 
+All other resources are hidden in a private VPC (virtual private cloud) which is great for OPSEC.</p>
+
+<p><img src="/images/red-lambda-aws-topo.png" alt="red-lambda-aws-topology" class="img-responsive" /></p>
+
+<p>To ease the implementation and deployment of this C2 infrastructure, I developed a <a href="https://aws.amazon.com/cloudformation/">CloudFormation</a> template which is an infrastructure as code AWS service used to automatically deploy infrastructure. The cloudformation template sets up:</p>
+
+<ul>
+  <li>VPC &amp; Subnet</li>
+  <li>EC2 instance with SSM enabled</li>
+  <li>Lambda Redirector</li>
+  <li>Lambda Function URL</li>
+</ul>
+
+<p>A prerequisite to running CloudFormation is installing the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">aws-cli</a> on your workstation. 
+Additionally, a valid AWS API key is needed in order to authenticate to AWS using the aws-cli. 
+Once this is setup on the workstation, deployment is done by running:</p>
+
+<p><code class="language-plaintext highlighter-rouge">aws cloudformation deploy --stackname &lt;insert name&gt; --template  /path/to/template.yml --capabilities CAPABILITY_NAMED_IAM</code></p>
+
+<p>This deployment process takes a few minutes to complete, so sip some tea and relax while it runs.
+After running the CloudFormation template, the C2 framework still needs to be installed and configured on the EC2 instance.</p>
+
+<h2 id="c2-over-lambda">C2 over Lambda</h2>
+
+<p>To test this out with actual command and control, I setup <a href="https://github.com/its-a-feature/Mythic">Mythic</a> written by <a href="https://twitter.com/its_a_feature_">@its_a_feature_</a>. 
+There are numerous agents written for Mythic and I decided to use <a href="https://github.com/MythicAgents/Athena">Athena</a> which is a .NET 6 cross-platform agent developed by <a href="https://twitter.com/checkymander">@checkymander</a>. 
+When configuring the Athena payload in Mythic, I pointed the callback host to my Lambda Function URL as shown in the diagram below.</p>
+
+<p><img src="/images/mythic-config.png" alt="mythic-configuration" class="img-responsive" /></p>
+
+<p>As mentioned previously, the lambda function is configured to read all HTTP requests and forward them to the actual Mythic C2 server behind the scenes.
+Once downloaded and executed on my machine, the Athena agent successfully sent traffic through my lambda redirector and back to the Mythic server. Below is a screenshot of the successful C2 activity.</p>
+
+<p><img src="/images/athena-callback.png" alt="athena-callback" /></p>
+
+  </div>
+
+  
+
+  <a class="u-url" href="/lambda-function-urls.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Scott Taylor</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Scott Taylor</li><li><a class="u-email" href="mailto:scott.c.taylor12@gmail.com">scott.c.taylor12@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/scottctaylor12"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">scottctaylor12</span></a></li><li><a href="https://www.linkedin.com/in/scottctaylor12"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">scottctaylor12</span></a></li><li><a href="https://www.twitter.com/scottctaylor12"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">scottctaylor12</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>OSCP | RHCE | Splunk</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
