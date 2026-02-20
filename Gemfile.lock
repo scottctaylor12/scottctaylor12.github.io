@@ -30,9 +30,7 @@ GEM
       http_parser.rb (~> 0.6.0)
     erubi (1.13.0)
     eventmachine (1.2.7)
-    eventmachine (1.2.7-x64-mingw32)
     ffi (1.13.1)
-    ffi (1.13.1-x64-mingw32)
     forwardable-extended (2.6.0)
     google_analytics (1.1.5)
       actionpack
@@ -83,8 +81,10 @@ GEM
       jekyll-feed (~> 0.9)
       jekyll-seo-tag (~> 2.1)
     minitest (5.25.4)
-    nokogiri (1.18.9)
+    nokogiri (1.19.1)
       mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
+    nokogiri (1.19.1-x64-mingw-ucrt)
       racc (~> 1.4)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
@@ -108,8 +108,6 @@ GEM
     safe_yaml (1.0.5)
     sassc (2.4.0)
       ffi (~> 1.9)
-    sassc (2.4.0-x64-mingw32)
-      ffi (~> 1.9)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
     tzinfo (2.0.6)
@@ -120,7 +118,7 @@ GEM
 
 PLATFORMS
   ruby
-  x64-mingw32
+  x64-mingw-ucrt
 
 DEPENDENCIES
   google_analytics
